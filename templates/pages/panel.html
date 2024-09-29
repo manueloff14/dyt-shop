@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold">Panel de Administración</h1>
+            <a href="/cerrar_sesion">
+                <button class="bg-red-500 text-white font-bold p-2 px-4 rounded-full">Cerrar</button>
+            </a>
+        </div>
+        <div class="mb-6">
+            <a href="/editar">
+                <button class="bg-blue-500 text-white font-bold p-2 px-4 rounded-full mr-4">Editar Productos</button>
+            </a>
+            <a href="/subir_producto">
+                <button class="bg-green-500 text-white font-bold p-2 px-4 rounded-full">Subir Productos</button>
+            </a>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+            <h2 class="text-2xl font-bold mb-4">Estadísticas Generales</h2>
+            <p class="text-gray-700 mb-2">Total de productos: <span class="font-semibold">{{ datos_panel.total_productos }}</span></p>
+            <p class="text-gray-700 mb-2">Total de productos para niñas: <span class="font-semibold">{{ datos_panel.total_nina }}</span></p>
+            <p class="text-gray-700 mb-2">Total de productos para niños: <span class="font-semibold">{{ datos_panel.total_nino }}</span></p>
+            <p class="text-gray-700 mb-2">Total de productos unisex: <span class="font-semibold">{{ datos_panel.total_unisex }}</span></p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+            <h2 class="text-2xl font-bold mb-4">Productos por Categoría</h2>
+            <ul class="list-disc pl-5">
+                {% for categoria, count in datos_panel.categorias_contador.items() %}
+                <li class="text-gray-700 mb-2">{{ categoria }}: <span class="font-semibold">{{ count }}</span></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-2xl font-bold mb-4">Productos Más Vendidos</h2>
+            <ul class="list-disc pl-5">
+                {% for producto in mas_vendidos %}
+                <li class="text-gray-700 mb-2">{{ producto.nombre_producto }} - Vendidos: <span class="font-semibold">{{ producto.compras | length }}</span></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

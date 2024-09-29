@@ -1,0 +1,16 @@
+<div class="form_buscar menu_mobile" id="form_buscar">
+    <div>
+        <header>
+            <h2>Buscar</h2>
+            <button onclick="ocultarDiv('form_buscar')">
+                <img
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAABUUlEQVR4nO3ZsUoDQRDG8X+ZTss8ho3tNhffILCNz+BbKFjaWIt2Yi2IvU8kaQyJCBsIYe9MbnZn9mA+uHY2P3KXm4+Ax+PxeBrMDLgDXoHO4PzLdPYDcC4ZdAts0/UDRPTSAau9858kw972BmliugPE3/UlGXiVPrwmpssgNsC1dPAyg1mXGJxJAL4ziJtSB2hgqiM0MGqImhh1RA2MGaIkxhxRAtMMQoJpDjEG0yziFEzziGMwk0HsEnt2s9WUEEPfzOQQ/2EmhehbxXfPjGY5EyX3YGtUAJVStDZqmqMy9BOrWc5EOeY90TwmnPCyaxYTRryxm8MEwdrRDCYU2J3MMaHgAmiGCRW2WHVMqLiKq2GCQp+ojtEsRctamAuDUhR7ytlCMvTZqE/EDOZTMvDesBTFA8yLZNgZ8Ah8pPtXOwvgPf1bNTc43+PxeDwM5hdwYmtTauYzRQAAAABJRU5ErkJggg==">
+            </button>
+        </header>
+        <form action="{{ url_for('search') }}">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAABxklEQVR4nO2Wu04DMRBFV7waHh1I/ALwDws1FIDw5l57qxSLiAIBfiAt4jd4fQoSouEhEQShpw4FVKAJY2UriHdRhAQjuVrfObP2+NpR9B+/JYwxYwASkqcAWgBedLRInsg3mfOjUGvtOoA2yfdvxiOAtdLAZrM5BOAwl/gKwI5zbi5N03EZAOZJNgBc+3kADkRbGIwe9JXk5lfJ5BvJLZ3bhRdeXvagcb+6SqWy6OEkV4s0UlvFm6FFk6zpXz9kWTbatxCf3dvd0yJ7ZYwZJnmj8I0Q8JmKtkOhuRy7muO4bxHJexFJ95YAzyu4FQLuiMgYM1EUXK1WJ3W7OgMFO+emioDvyy51kiQLvrNDwCdabaMomOS+5jgKPk4Arkscp1vJYa01IcIxMXyteCsUTLKuhbfjOB4JEgNY85YpNtivzlq7RPJN/3YltOhuiNHn/LomSxh9vbx1DwXwnKbpTFTiWjzIXYs34khiDnLUZEj3Atjze+qhfn5huITcMnIsvnsIAHgCsCww79Wl4VmWjYrhi/cCuBNj0KePFHQk3ZtvpB+Fh4YxZtq/TKRY59xs9CfgaW7ZAVwMDOzhAC4BnA8U/B+RxgeUiF9TiNgzdQAAAABJRU5ErkJggg=="
+                alt="">
+            <input name="q" value="{{ query }}" type="text" placeholder="Buscar un producto">
+        </form>
+    </div>
+</div>

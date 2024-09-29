@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calzado deportivo D&T</title>
+    {% include 'components/head.html' %}
+</head>
+<body>
+    {% include 'cabecera/cabecera.html' %}
+    {% include 'components/bienvenida.html' %}
+
+    <section class="p-3 pt-5 xl:px-[110px]">
+        <h1 class="font-bold text-xl">Más visitados</h1>
+        <div class="flex mt-[20px] overflow-x-auto space-x-4">
+            {% for producto in mas_vendidos %}
+                {% include 'productos/mas_vendidos.html' %}
+            {% endfor %}
+            <!-- Puedes repetir el elemento <a> para más productos, ajustando el número en .top-indicator -->
+        </div>
+    </section>
+
+    <section class="p-3 xl:px-[110px]">
+        <h1 class="font-bold text-xl">Recomendados</h1>
+        <div class="flex mt-[20px] overflow-x-auto space-x-4">
+            {% for producto in recomendados %}
+                {% include 'productos/recomendados.html' %}
+            {% endfor %}
+            <!-- Puedes repetir el elemento <a> para más productos, ajustando el texto en .recommended-indicator -->
+        </div>
+    </section>
+
+    <section class="p-3 xl:px-[110px]">
+        <h1 class="font-bold text-xl">Recién agregados</h1>
+        <div class="flex mt-[20px] overflow-x-auto space-x-4">
+            {% for producto in mas_nuevos %}
+                {% include 'productos/nuevos.html' %}
+            {% endfor %}
+            <!-- Puedes repetir el elemento <a> para más productos, ajustando el texto en .recommended-indicator -->
+        </div>
+    </section>
+
+
+    {% include 'components/footer.html' %}
+    {% include 'components/form_buscar.html' %}
+    {% include 'components/menu_mobile.html' %}
+    <script src="{{ url_for('static', filename='js/ocultarCabecera.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/ocultar_mostrar.js') }}"></script>
+</body>
+</html>

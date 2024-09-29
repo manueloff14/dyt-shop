@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+    <style>
+        body {
+            background-color: white;
+            color: black;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen">
+    <div class="flex justify-end p-4">
+        <a href="/">
+            <img class="w-24" src="{{ url_for('static', filename='img/d&t_logo.png') }}" alt="D&T Logo">
+        </a>
+    </div>
+    <div class="flex-grow flex items-center justify-center">
+        <div class="text-left">
+            <h1 class="text-2xl font-bold mb-4">Iniciar Sesión</h1>
+            <p class="mb-4">Por favor ingresa los datos para continuar</p>
+            <form action="/acceder" method="POST" class="space-y-4 flex flex-col justify-center">
+                <input class="border p-2 px-4 w-full rounded-full" type="number" name="token" placeholder="Token" required>
+                <input class="border p-2 px-4 w-full rounded-full" type="password" name="password" placeholder="Contraseña" required>
+                <div class="flex justify-end">
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded-full flex items-center justify-center w-[40%]">
+                        Login
+                        <img class="w-[20px] ml-2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB4klEQVR4nO3cu0ocURyA8dEqGLARUifxbkpJShvBeOlMXsTOXhvfRPARQiCSQgJpLVII60qiDxCIJsUXBFNpdA/snPP3zPd7gJ0/8+1ldi6naSRJkiRJkiRJkiRJkiRJkjREwBiwDXwCjoA94Nkwt6EBAePAV247A+YGfR0NCbDL//0wSmbAMfe7ABZyz9VZQO+BIEbJHGSfwXwHZrMO10XAK+BnQpSZ0jNXD1gFfiVEmS49c/WAlYQo1z/086Vnrh5pUc6NkoFRHn+UM2Cq9MzVwyjxYJQqokyWnrl6pEXpGyUDowSEn5R4MEoVUV42kQCvgc/AJd3UA543EQDLwFXpPRIkyovSMUaAb6X3RCD9oqdZrjdeeg8EVO7Ko0HiBRkFTu6eq5P6xc8MA0vAn9J7IoDyP+r/AIvAx4Rj99r0whz21gh4m/DmOg33x7DDMfrGiHO7kKfh22SMQIA1PxlBYIw4gPWEM9ReTw8Ww3uz2gJsGCMIjBEHsAn8HvBryput2wS8M0YQwPuEGD6w03KMNwnX/H2krW3AQUIMH/rMEOTEGIEAXx4I4sIBmYPs3BPDpTVyA57erAB01/UMF58pAXgCbAEfgMObBWkmigwjSZIkSZIkSZIkSZIkSZLURPEXqmOk4fWrSIkAAAAASUVORK5CYII=" alt="Login Icon">
+                    </button>
+                </div>
+            </form>
+            {% if error %}
+                <h1 class="text-red-500 mt-4">{{ error }}</h1>
+            {% endif %}
+        </div>
+    </div>
+    <footer class="bg-gray-800 text-white text-center py-4 mt-auto">
+        <span>Recuerda que sólo los administradores pueden ingresar :)</span>
+    </footer>
+</body>
+
+</html>

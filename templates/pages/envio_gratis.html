@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envío gratis | Calzado deportivo D&T</title>
+    {% include 'components/head.html' %}
+</head>
+<body>
+    {% include 'cabecera/cabecera.html' %}
+
+    {% include 'webs/envio_gratis.html' %}
+
+    {% include 'components/footer.html' %}
+    <script src="{{ url_for('static', filename='js/ocultarCabecera.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/ocultar_mostrar.js') }}"></script>
+</body>
+</html>

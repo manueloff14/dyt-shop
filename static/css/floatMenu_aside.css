@@ -1,0 +1,37 @@
+.fondo_negro {
+    background-color: #242424d5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: none;
+    z-index: 100;
+}
+
+.fondo_negro .floatMenu_aside {
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    width: 40%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.fondo_negro .floatMenu_aside header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.fondo_negro .floatMenu_aside header button {
+    width: auto;
+    padding: 5px 10px;
+    border-radius: 100px;
+    border: none;
+    background-color: red;
+    color: wheat;
+}

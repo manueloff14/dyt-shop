@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas frecuentes | Calzado deportivo D&T</title>
+    {% include 'components/head.html' %}
+</head>
+<body>
+    {% include 'cabecera/cabecera.html' %}
+
+    <section class="p-3 pt-[140px] xl:px-[120px]">
+        <h1 class="text-3xl font-bold text-black mb-4">Preguntas Frecuentes</h1>
+        <p class="text-gray-700 mb-4">
+            Hemos recopilado algunas de las preguntas más comunes que recibimos de nuestros clientes para ayudarte a obtener respuestas rápidas y claras. Si no encuentras la información que necesitas, no dudes en contactarnos a través de WhatsApp.
+        </p>
+
+        <h2 class="text-2xl font-bold text-black mb-3">¿Cómo realizo una compra?</h2>
+        <p class="text-gray-700 mb-4">
+            Para realizar una compra, simplemente selecciona el zapato que deseas comprar, elige la cantidad y haz clic en el botón de "Comprar Ahora". Serás redirigido a un chat en WhatsApp con nuestro equipo de compras, donde coordinarás el pago y el envío.
+        </p>
+
+        <h2 class="text-2xl font-bold text-black mb-3">¿Ofrecen envío gratis?</h2>
+        <p class="text-gray-700 mb-4">
+            Sí, ofrecemos envío gratis en compras superiores a 200,000 pesos colombianos. Además, algunos productos incluyen envío gratis sin necesidad de alcanzar este monto mínimo.
+        </p>
+
+        <h2 class="text-2xl font-bold text-black mb-3">¿Cómo funciona el envío rápido?</h2>
+        <p class="text-gray-700 mb-4">
+            El envío rápido tiene un costo adicional de 15,000 pesos. Al elegir esta opción, tu pedido será procesado prioritariamente y se enviará el mismo día, para que lo recibas al día siguiente.
+        </p>
+
+        <h2 class="text-2xl font-bold text-black mb-3">¿Cómo puedo contactarlos?</h2>
+        <p class="text-gray-700 mb-4">
+            La única forma de contactarnos es a través de WhatsApp. Haz clic en el enlace proporcionado en nuestro sitio web para iniciar una conversación con nuestro equipo de soporte.
+        </p>
+
+        <h2 class="text-2xl font-bold text-black mb-3">¿Cuál es la calidad de sus productos?</h2>
+        <p class="text-gray-700 mb-4">
+            Nos enorgullece ofrecer zapatos de la más alta calidad en el mercado. Utilizamos materiales duraderos y cómodos, y cada par de zapatos pasa por un riguroso control de calidad para asegurar la máxima satisfacción de nuestros clientes.
+        </p>
+
+        <h2 class="text-2xl font-bold text-black mb-3">¿Qué métodos de pago aceptan?</h2>
+        <p class="text-gray-700 mb-4">
+            Durante el proceso de compra en WhatsApp, te proporcionaremos los detalles de la cuenta bancaria a la que debes realizar el depósito del dinero. Este es el método de pago que utilizamos actualmente.
+        </p>
+
+        <h2 class="text-2xl font-bold text-black mb-3">¿Puedo devolver un producto?</h2>
+        <p class="text-gray-700 mb-4">
+            Sí, puedes devolver un producto si no estás satisfecho. Contáctanos a través de WhatsApp para iniciar el proceso de devolución y nuestro equipo te asistirá en cada paso.
+        </p>
+
+        <p class="text-gray-700 mb-4">
+            Si tienes alguna otra pregunta, no dudes en contactarnos. Estamos aquí para ayudarte y asegurarnos de que tengas la mejor experiencia de compra posible.
+        </p>
+        <p class="text-center mt-6">
+            {% include 'components/btn_whatsapp.html' %}
+        </p>
+
+
+    </section>
+
+    {% include 'components/footer.html' %}
+    {% include 'components/form_buscar.html' %}
+    {% include 'components/menu_mobile.html' %}
+    <script src="{{ url_for('static', filename='js/ocultarCabecera.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/ocultar_mostrar.js') }}"></script>
+</body>
+</html>

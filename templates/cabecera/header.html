@@ -1,0 +1,146 @@
+<header class="flex items-center justify-between bg-white w-full p-3 xl:px-[120px]">
+    <img class="cursor-pointer w-[100px] h-auto sm:flex lg:hidden"
+    src="{{ url_for('static', filename='img/d&t_logo.png') }}"
+    alt="D&T Logo"
+    onclick="window.location.href='/';">
+    <div class="hidden lg:flex items-center xl:w-[50%]">
+        <img class="cursor-pointer w-[100px] h-auto mr-[20px]"
+        src="{{ url_for('static', filename='img/d&t_logo.png') }}"
+        alt="D&T Logo"
+        onclick="window.location.href='/';">
+        <select name="city" id="city-select" class="hidden p-[10px] rounded-full mr-[10px] text-sm">
+            <option value="cucuta">Cúcuta</option>
+            <option value="villa_del_rosario">Villa del Rosario</option>
+            <option value="los_patios">Los Patios</option>
+            <option value="el_zulia">El Zulia</option>
+            <option value="san_cayetano">San Cayetano</option>
+            <option value="puerto_santander">Puerto Santander</option>
+            <option value="bochalema">Bochalema</option>
+            <option value="pamplona">Pamplona</option>
+            <option value="chinacota">Chinácota</option>
+            <option value="sardinata">Sardinata</option>
+            <option value="durania">Durania</option>
+            <option value="ragonvalia">Ragonvalia</option>
+            <option value="herran">Herrán</option>
+            <option value="ocana">Ocaña</option>
+        </select>
+        <script>
+            // Obtener el elemento select
+            const selectElement = document.getElementById('city-select');
+
+            // Cargar la selección guardada en localStorage
+            const savedSelection = localStorage.getItem('selectedCity');
+            if (savedSelection) {
+                selectElement.value = savedSelection;
+            }
+
+            // Guardar la selección en localStorage cuando cambie
+            selectElement.addEventListener('change', function () {
+                localStorage.setItem('selectedCity', selectElement.value);
+            });
+        </script>
+        <form action="/search"
+            class="bg-gray-100 hidden items-center px-[10px] rounded-full group focus-within:ring-2 focus-within:ring-blue-500 lg:flex xl:w-[100%]">
+            <img class="w-[20px] mr-[10px]"
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFaElEQVR4nO2cz4scRRTH3wbc6MzU99vjOI4LexLRg0FB408UcwiJgj+if0eie9N4EhH0osasXkXij5gFET2EIJKoGDU5a+IlakKMa9bsxYPZDe7Kc2sljFPdM5Odrqre+kDBMjt0v3rz+lXV+9EiiUQikUgkEolEIpH4P51Opw5gO4DdAN4h+R3JUyTnSS7YMW8/+1a/Y7+7bWJiotbjkolV6vX69SSnAHxlFbk85FjQa2RZ9oxe878brHeyLHsQwCckL12Bcl1jUa/dbDYfkPVKlmUPAfhyBMrtOQB8oT+qrBdqtdoNJPeRXCpLyV1jpl6vd6TKkHzKLmLLnsc8yR1SQcZJvjGgFZ8j+T6AXbqbAHATyaaIXKVD/9bP9H/GmKf1uyR/G+D6SwBet9eLn3a73SD5WZ+TPw9gD8k7h70fgM32R53r856HVEaJGWNMi+TxPhaq0wB2Tk5OXrNW99Zr2afhTB/KPqaySozowYHkNwUTXFTrG6VFqcJJvkDyYoEsx2O07PE+3MUPzWbz1rIEajabm0ieKHIjUfls6yPzJrTfx1G50+nUdXtX4MZekxjIsuyxgt3FmyKywaOIYwBezduNkHxSIjiM5O2T90ogkJzOkfNC0HESku/muQvPltzNhjw3ohFBCTV24XIZAL4PMXzZXtnjn3S5kCCDUTkBootl7i4GJcuy21xhWQCHJSSMMffluIwXJXBIvuySPyirtvHknie+tTztjTijc9Yxh48loMzIokPInRIJJKdcp9dGo9EOWcDzMVhzV8igZyBKYybiG5vj6yXcHokMknsdczniVTB7pHUlUu+QyABwl2vn5PXp1KC7Q7BzEidjJGcdc9rqTSoAzzuEek8iheR+x5ye9SaULW4Jc/EYEq0HcczpbfGFVgk5hNomkQLgYYdFH/Up1M8OoW6USMFKEriX8fzkTSgNJzqEulbiznMu9xhz3oRybe00lSXxMu7a4nmTqKKK3uhQ9II3iaroOhqNxnUORV/wJtQ6WwxPh7i92y6RYox5xGE8Xwd3YNFaOIkUuqOR+7wJpe0MDqE+kEgh+aHjKd3tTSh1EQ5Fz2qARqoVVNriO1juSmxulsgwxtzjUPKihoSDDPxrWZhEBh1FNQA+DzbapamsEGs5Cp7OP4LNfRYkZ3dVITlbq9UmJPBygzMxWHVnpdzgV4eiD0goaJGJQ0gdL0ngkHwligIaRfv4ckrCNkmgZFl2e87Oyf8i2I02S+bURZ/wvj3qQavVMiR/dMi8ZIy5V0LENmq6XMhMaGW7AD6KrmxX0Y7UgkL0aQkEkm/lyDmn4VIJGWPMoxVordghMaAdqTkT+deN+Gg1a7VaJs9dRNUsZNEW4kMFyj6pReAl7y5cC9/l46CmsySyI+3Rfho6W62WGbEc/TR0dvcbXi2Rpe6PFU0MwFmNmazlKdIqeCrnxFcty7YNOUVuZHl1tdfSWQB3DxnPHrOhzmlXgKjSylafrYvMgK+RmNWCQ7V0LdMyxtxsXyOhpQzjmmk3xtxiS7imbGbk9wFfI6EyHayasnVBesJVosByx1yWZY9fVsdRPWWrJdpe8b89KXmmR0+KPiGfVmqBXEWjYgAOl6VgDRAVxC6qadmrGGPu1xYzV/LgCode88AAoc5qK1vR2IJ9Y8yRAfe83eOSWq+mn4bMjFRf2V1vjdkK4DmttLdvsjllF9IFa6nzAH7RCiKNGtoaky1rFI5dP8oOgOoukAGSlF0iSdklkpRdIknZJZKUXSJp6xeSsmN8u0OUygbwZ6Q14tEp+6/A6liqqWyvTfoVZqP6ZHUXasmq5Bjf3BsT6pOTX04kEolEIpFIJGS0/AMy3IgJmgE4KQAAAABJRU5ErkJggg==">
+            <input class="py-[7px] w-full bg-transparent focus:outline-none" type="text" name="q" value="{{ query }}"
+                placeholder="Buscar un zapato">
+        </form>
+    </div>
+
+    <div>
+        <div class="flex relative">
+            <form action="/search"
+                class="bg-gray-100 hidden items-center px-[10px] rounded-full group focus-within:ring-2 focus-within:ring-blue-500 sm:flex lg:hidden">
+                <img class="w-[20px] mr-[10px]"
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFaElEQVR4nO2cz4scRRTH3wbc6MzU99vjOI4LexLRg0FB408UcwiJgj+if0eie9N4EhH0osasXkXij5gFET2EIJKoGDU5a+IlakKMa9bsxYPZDe7Kc2sljFPdM5Odrqre+kDBMjt0v3rz+lXV+9EiiUQikUgkEolEIpH4P51Opw5gO4DdAN4h+R3JUyTnSS7YMW8/+1a/Y7+7bWJiotbjkolV6vX69SSnAHxlFbk85FjQa2RZ9oxe878brHeyLHsQwCckL12Bcl1jUa/dbDYfkPVKlmUPAfhyBMrtOQB8oT+qrBdqtdoNJPeRXCpLyV1jpl6vd6TKkHzKLmLLnsc8yR1SQcZJvjGgFZ8j+T6AXbqbAHATyaaIXKVD/9bP9H/GmKf1uyR/G+D6SwBet9eLn3a73SD5WZ+TPw9gD8k7h70fgM32R53r856HVEaJGWNMi+TxPhaq0wB2Tk5OXrNW99Zr2afhTB/KPqaySozowYHkNwUTXFTrG6VFqcJJvkDyYoEsx2O07PE+3MUPzWbz1rIEajabm0ieKHIjUfls6yPzJrTfx1G50+nUdXtX4MZekxjIsuyxgt3FmyKywaOIYwBezduNkHxSIjiM5O2T90ogkJzOkfNC0HESku/muQvPltzNhjw3ohFBCTV24XIZAL4PMXzZXtnjn3S5kCCDUTkBootl7i4GJcuy21xhWQCHJSSMMffluIwXJXBIvuySPyirtvHknie+tTztjTijc9Yxh48loMzIokPInRIJJKdcp9dGo9EOWcDzMVhzV8igZyBKYybiG5vj6yXcHokMknsdczniVTB7pHUlUu+QyABwl2vn5PXp1KC7Q7BzEidjJGcdc9rqTSoAzzuEek8iheR+x5ye9SaULW4Jc/EYEq0HcczpbfGFVgk5hNomkQLgYYdFH/Up1M8OoW6USMFKEriX8fzkTSgNJzqEulbiznMu9xhz3oRybe00lSXxMu7a4nmTqKKK3uhQ9II3iaroOhqNxnUORV/wJtQ6WwxPh7i92y6RYox5xGE8Xwd3YNFaOIkUuqOR+7wJpe0MDqE+kEgh+aHjKd3tTSh1EQ5Fz2qARqoVVNriO1juSmxulsgwxtzjUPKihoSDDPxrWZhEBh1FNQA+DzbapamsEGs5Cp7OP4LNfRYkZ3dVITlbq9UmJPBygzMxWHVnpdzgV4eiD0goaJGJQ0gdL0ngkHwligIaRfv4ckrCNkmgZFl2e87Oyf8i2I02S+bURZ/wvj3qQavVMiR/dMi8ZIy5V0LENmq6XMhMaGW7AD6KrmxX0Y7UgkL0aQkEkm/lyDmn4VIJGWPMoxVordghMaAdqTkT+deN+Gg1a7VaJs9dRNUsZNEW4kMFyj6pReAl7y5cC9/l46CmsySyI+3Rfho6W62WGbEc/TR0dvcbXi2Rpe6PFU0MwFmNmazlKdIqeCrnxFcty7YNOUVuZHl1tdfSWQB3DxnPHrOhzmlXgKjSylafrYvMgK+RmNWCQ7V0LdMyxtxsXyOhpQzjmmk3xtxiS7imbGbk9wFfI6EyHayasnVBesJVosByx1yWZY9fVsdRPWWrJdpe8b89KXmmR0+KPiGfVmqBXEWjYgAOl6VgDRAVxC6qadmrGGPu1xYzV/LgCode88AAoc5qK1vR2IJ9Y8yRAfe83eOSWq+mn4bMjFRf2V1vjdkK4DmttLdvsjllF9IFa6nzAH7RCiKNGtoaky1rFI5dP8oOgOoukAGSlF0iSdklkpRdIknZJZKUXSJp6xeSsmN8u0OUygbwZ6Q14tEp+6/A6liqqWyvTfoVZqP6ZHUXasmq5Bjf3BsT6pOTX04kEolEIpFIJGS0/AMy3IgJmgE4KQAAAABJRU5ErkJggg==">
+                <input class="py-[7px] w-full bg-transparent focus:outline-none" type="text" name="q"
+                    value="{{ query }}" placeholder="Buscar un zapato">
+            </form>
+
+            <div class="hidden md:flex">
+                <a href="/devolver">
+                    <button class="font-bold text-sm bg-gray-200 px-3 rounded-full lg:py-[10px]">
+                        Devolver
+                        pedido
+                    </button>
+                </a>
+
+                <a href="/pqr">
+                    <button class="font-bold text-sm bg-gray-200 px-3 rounded-full lg:py-[10px]">
+                        PQR
+                    </button>
+                </a>
+
+                <a href="/acceder">
+                    <button class="font-bold text-sm bg-gray-200 px-3 rounded-full lg:py-[10px]">
+                        Acceder
+                    </button>
+                </a>
+            </div>
+
+            <button class="flex bg-gray-200 p-2 rounded-full sm:hidden" onclick="mostrarDiv('buscar')">
+                <img class="w-[20px]"
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFaElEQVR4nO2cz4scRRTH3wbc6MzU99vjOI4LexLRg0FB408UcwiJgj+if0eie9N4EhH0osasXkXij5gFET2EIJKoGDU5a+IlakKMa9bsxYPZDe7Kc2sljFPdM5Odrqre+kDBMjt0v3rz+lXV+9EiiUQikUgkEolEIpH4P51Opw5gO4DdAN4h+R3JUyTnSS7YMW8/+1a/Y7+7bWJiotbjkolV6vX69SSnAHxlFbk85FjQa2RZ9oxe878brHeyLHsQwCckL12Bcl1jUa/dbDYfkPVKlmUPAfhyBMrtOQB8oT+qrBdqtdoNJPeRXCpLyV1jpl6vd6TKkHzKLmLLnsc8yR1SQcZJvjGgFZ8j+T6AXbqbAHATyaaIXKVD/9bP9H/GmKf1uyR/G+D6SwBet9eLn3a73SD5WZ+TPw9gD8k7h70fgM32R53r856HVEaJGWNMi+TxPhaq0wB2Tk5OXrNW99Zr2afhTB/KPqaySozowYHkNwUTXFTrG6VFqcJJvkDyYoEsx2O07PE+3MUPzWbz1rIEajabm0ieKHIjUfls6yPzJrTfx1G50+nUdXtX4MZekxjIsuyxgt3FmyKywaOIYwBezduNkHxSIjiM5O2T90ogkJzOkfNC0HESku/muQvPltzNhjw3ohFBCTV24XIZAL4PMXzZXtnjn3S5kCCDUTkBootl7i4GJcuy21xhWQCHJSSMMffluIwXJXBIvuySPyirtvHknie+tTztjTijc9Yxh48loMzIokPInRIJJKdcp9dGo9EOWcDzMVhzV8igZyBKYybiG5vj6yXcHokMknsdczniVTB7pHUlUu+QyABwl2vn5PXp1KC7Q7BzEidjJGcdc9rqTSoAzzuEek8iheR+x5ye9SaULW4Jc/EYEq0HcczpbfGFVgk5hNomkQLgYYdFH/Up1M8OoW6USMFKEriX8fzkTSgNJzqEulbiznMu9xhz3oRybe00lSXxMu7a4nmTqKKK3uhQ9II3iaroOhqNxnUORV/wJtQ6WwxPh7i92y6RYox5xGE8Xwd3YNFaOIkUuqOR+7wJpe0MDqE+kEgh+aHjKd3tTSh1EQ5Fz2qARqoVVNriO1juSmxulsgwxtzjUPKihoSDDPxrWZhEBh1FNQA+DzbapamsEGs5Cp7OP4LNfRYkZ3dVITlbq9UmJPBygzMxWHVnpdzgV4eiD0goaJGJQ0gdL0ngkHwligIaRfv4ckrCNkmgZFl2e87Oyf8i2I02S+bURZ/wvj3qQavVMiR/dMi8ZIy5V0LENmq6XMhMaGW7AD6KrmxX0Y7UgkL0aQkEkm/lyDmn4VIJGWPMoxVordghMaAdqTkT+deN+Gg1a7VaJs9dRNUsZNEW4kMFyj6pReAl7y5cC9/l46CmsySyI+3Rfho6W62WGbEc/TR0dvcbXi2Rpe6PFU0MwFmNmazlKdIqeCrnxFcty7YNOUVuZHl1tdfSWQB3DxnPHrOhzmlXgKjSylafrYvMgK+RmNWCQ7V0LdMyxtxsXyOhpQzjmmk3xtxiS7imbGbk9wFfI6EyHayasnVBesJVosByx1yWZY9fVsdRPWWrJdpe8b89KXmmR0+KPiGfVmqBXEWjYgAOl6VgDRAVxC6qadmrGGPu1xYzV/LgCode88AAoc5qK1vR2IJ9Y8yRAfe83eOSWq+mn4bMjFRf2V1vjdkK4DmttLdvsjllF9IFa6nzAH7RCiKNGtoaky1rFI5dP8oOgOoukAGSlF0iSdklkpRdIknZJZKUXSJp6xeSsmN8u0OUygbwZ6Q14tEp+6/A6liqqWyvTfoVZqP6ZHUXasmq5Bjf3BsT6pOTX04kEolEIpFIJGS0/AMy3IgJmgE4KQAAAABJRU5ErkJggg==">
+            </button>
+            <button class="flex bg-gray-200 p-2 ml-2 rounded-full items-center md:hidden" id="mostrar_menu"
+                onclick="mostrarDiv('menu')">
+                <img class="w-[20px]"
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAABDUlEQVR4nO3aS07EMBAE0EhsrS7lGIA4O58Vw6UQsJvNIB8hUSwc8Z7UF+hKbC9qWQAAAAAAAP6xdV0fq+qtqr6S3Ex276DvsKpeW2sPe8N4qqofIeTQD7HvtO92cyBJPoSRUafCZWsed0muAsmoQK59xwLJeQNxZGVoIO9bjyyXesaEUVXfuy71rj/Rquqlqj4n+M1vZ56+w6p6bq3d7woDAAAAAAAAAAD20X7PkTUg7ffMGYz2e+Yb7ffMNdrvOXkg2u8ZGoj2eyYZ7fdME4T2OwAAAAAAAAAAf0H7PUfWgLTfM2cw2u+Zb7TfM9dov+fkgWi/Z2gg2u+ZZLTfM00Q2u8AAAAAAMDCsvwCOOWA78bM7f8AAAAASUVORK5CYII=">
+            </button>
+
+            <div class="bg-[#000000c7] backdrop-blur fixed inset-0 z-50 opacity-0 hidden" id="menu">
+                <div class="flex justify-end items-start h-full m-4">
+                    <div class="bg-white p-5 rounded-[20px] shadow-xl w-[70%]">
+                        <header class="flex items-center justify-between font-bold mb-[20px]">
+                            <h1 class="font-bold text-xl">Menú</h1>
+                            <button onclick="ocultarDiv('menu')" id="ocultar_menu">
+                                <img class="w-[20px]"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAACnUlEQVR4nO3dMWsUURSG4VcFEbRLcchaCPYpXNGkDWJjY6OFTSwjoo2d2GjnnzA/R7DTwkJUsLMQQSPa6DCyMAPL4pK5a2bvued+L0x/Jg+T2Z25ywWllFJKKaWUUkoppZRSatZJ4BpwD7gJnKns3K8DD4FbwNncA10A3gDt3PEJuEz8NoFXC+f+BdjNNdAp4PXCQP3xDdghbga8XXLuh8D5HEPtLhloHmWbeE2Ad0ec++Mcg+0fMVRElMkAjNnxIsdwNwYMFgllMhBjdjzNMeBp4GMlKJMEjJ/AxVyDXur+2JFRJgkYDXAn98BT4GsCyk6QT1PtPzDu4qSIKFYqRkQUKx0jEopFwYiAYtEwSkaxqBglolh0jJJQrBaMElCsNgzPKFYrhkcUqx3DE4oJww+KCcMPignDD4oJww+KCcMPignDD4oJww+KCcMPignDD4oJww+KCWPcthOXGH1IeDa1N/LsYZsmXClt7Q8KS0NphOEHpRGGH5RGGH5QGmGMv/D5fQLIYaELvIvIEr5nDPlGrzJgtELxh9EKxR9GK5T1/3LpRwKKbvQjXhlN99HWwxKjkNl/PLUViiOMPqEcU3aM7zOE4gijTygrNuabvqlu9H4w+oQysHW+A5/qSvGD0SeUJeVcHTLVleIHo08ojjD6qkfxhEHtKB4xqkXxjFEdSgkY1aCUhBEepUSMsCglY4RDiYARBiUSRvEoETGKRdlMXKqzV8Evua7mGvQE8DI4xioon4ENHG5XEQVjFZRHZOhBRRipKFm2q7hdGUYKynMydK7bc6kmjCEov4EtMjXbne37wkC/PGzZsIaudDfw+XP/A9wnc7MNsJ4AB8CznJuZZGiju4EfdP+msl0ZSimllFJKKaWUUkoppXDUX+Hur2UX2ZKIAAAAAElFTkSuQmCC">
+                            </button>
+                        </header>
+                        <ul>
+                            <li>
+                                <a href="/acceder">
+                                    Acceder
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/pqr">
+                                    PQR
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/devolver">
+                                    Devolver un pedido
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-[#000000c7] backdrop-blur fixed inset-0 z-50 opacity-0 hidden" id="buscar">
+                <div class="flex justify-start items-start h-full m-4 mt-[20px]">
+                    <div class="bg-white p-5 rounded-[20px] shadow-xl w-[100%] text-black">
+                        <header class="flex items-center justify-between font-bold mb-[20px]">
+                            <h1 class="font-bold text-2xl">Buscar</h1>
+                            <button onclick="ocultarDiv('buscar')" id="ocultar_menu">
+                                <img class="w-[20px]"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAACnUlEQVR4nO3dMWsUURSG4VcFEbRLcchaCPYpXNGkDWJjY6OFTSwjoo2d2GjnnzA/R7DTwkJUsLMQQSPa6DCyMAPL4pK5a2bvued+L0x/Jg+T2Z25ywWllFJKKaWUUkoppZRSatZJ4BpwD7gJnKns3K8DD4FbwNncA10A3gDt3PEJuEz8NoFXC+f+BdjNNdAp4PXCQP3xDdghbga8XXLuh8D5HEPtLhloHmWbeE2Ad0ec++Mcg+0fMVRElMkAjNnxIsdwNwYMFgllMhBjdjzNMeBp4GMlKJMEjJ/AxVyDXur+2JFRJgkYDXAn98BT4GsCyk6QT1PtPzDu4qSIKFYqRkQUKx0jEopFwYiAYtEwSkaxqBglolh0jJJQrBaMElCsNgzPKFYrhkcUqx3DE4oJww+KCcMPignDD4oJww+KCcMPignDD4oJww+KCcMPignDD4oJww+KCWPcthOXGH1IeDa1N/LsYZsmXClt7Q8KS0NphOEHpRGGH5RGGH5QGmGMv/D5fQLIYaELvIvIEr5nDPlGrzJgtELxh9EKxR9GK5T1/3LpRwKKbvQjXhlN99HWwxKjkNl/PLUViiOMPqEcU3aM7zOE4gijTygrNuabvqlu9H4w+oQysHW+A5/qSvGD0SeUJeVcHTLVleIHo08ojjD6qkfxhEHtKB4xqkXxjFEdSgkY1aCUhBEepUSMsCglY4RDiYARBiUSRvEoETGKRdlMXKqzV8Evua7mGvQE8DI4xioon4ENHG5XEQVjFZRHZOhBRRipKFm2q7hdGUYKynMydK7bc6kmjCEov4EtMjXbne37wkC/PGzZsIaudDfw+XP/A9wnc7MNsJ4AB8CznJuZZGiju4EfdP+msl0ZSimllFJKKaWUUkoppXDUX+Hur2UX2ZKIAAAAAElFTkSuQmCC">
+                            </button>
+                        </header>
+                        <form action="/search"
+                            class="bg-gray-100 flex items-center px-[10px] rounded-full group focus-within:ring-2 focus-within:ring-blue-500">
+                            <img class="w-[20px] mr-[10px]"
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFaElEQVR4nO2cz4scRRTH3wbc6MzU99vjOI4LexLRg0FB408UcwiJgj+if0eie9N4EhH0osasXkXij5gFET2EIJKoGDU5a+IlakKMa9bsxYPZDe7Kc2sljFPdM5Odrqre+kDBMjt0v3rz+lXV+9EiiUQikUgkEolEIpH4P51Opw5gO4DdAN4h+R3JUyTnSS7YMW8/+1a/Y7+7bWJiotbjkolV6vX69SSnAHxlFbk85FjQa2RZ9oxe878brHeyLHsQwCckL12Bcl1jUa/dbDYfkPVKlmUPAfhyBMrtOQB8oT+qrBdqtdoNJPeRXCpLyV1jpl6vd6TKkHzKLmLLnsc8yR1SQcZJvjGgFZ8j+T6AXbqbAHATyaaIXKVD/9bP9H/GmKf1uyR/G+D6SwBet9eLn3a73SD5WZ+TPw9gD8k7h70fgM32R53r856HVEaJGWNMi+TxPhaq0wB2Tk5OXrNW99Zr2afhTB/KPqaySozowYHkNwUTXFTrG6VFqcJJvkDyYoEsx2O07PE+3MUPzWbz1rIEajabm0ieKHIjUfls6yPzJrTfx1G50+nUdXtX4MZekxjIsuyxgt3FmyKywaOIYwBezduNkHxSIjiM5O2T90ogkJzOkfNC0HESku/muQvPltzNhjw3ohFBCTV24XIZAL4PMXzZXtnjn3S5kCCDUTkBootl7i4GJcuy21xhWQCHJSSMMffluIwXJXBIvuySPyirtvHknie+tTztjTijc9Yxh48loMzIokPInRIJJKdcp9dGo9EOWcDzMVhzV8igZyBKYybiG5vj6yXcHokMknsdczniVTB7pHUlUu+QyABwl2vn5PXp1KC7Q7BzEidjJGcdc9rqTSoAzzuEek8iheR+x5ye9SaULW4Jc/EYEq0HcczpbfGFVgk5hNomkQLgYYdFH/Up1M8OoW6USMFKEriX8fzkTSgNJzqEulbiznMu9xhz3oRybe00lSXxMu7a4nmTqKKK3uhQ9II3iaroOhqNxnUORV/wJtQ6WwxPh7i92y6RYox5xGE8Xwd3YNFaOIkUuqOR+7wJpe0MDqE+kEgh+aHjKd3tTSh1EQ5Fz2qARqoVVNriO1juSmxulsgwxtzjUPKihoSDDPxrWZhEBh1FNQA+DzbapamsEGs5Cp7OP4LNfRYkZ3dVITlbq9UmJPBygzMxWHVnpdzgV4eiD0goaJGJQ0gdL0ngkHwligIaRfv4ckrCNkmgZFl2e87Oyf8i2I02S+bURZ/wvj3qQavVMiR/dMi8ZIy5V0LENmq6XMhMaGW7AD6KrmxX0Y7UgkL0aQkEkm/lyDmn4VIJGWPMoxVordghMaAdqTkT+deN+Gg1a7VaJs9dRNUsZNEW4kMFyj6pReAl7y5cC9/l46CmsySyI+3Rfho6W62WGbEc/TR0dvcbXi2Rpe6PFU0MwFmNmazlKdIqeCrnxFcty7YNOUVuZHl1tdfSWQB3DxnPHrOhzmlXgKjSylafrYvMgK+RmNWCQ7V0LdMyxtxsXyOhpQzjmmk3xtxiS7imbGbk9wFfI6EyHayasnVBesJVosByx1yWZY9fVsdRPWWrJdpe8b89KXmmR0+KPiGfVmqBXEWjYgAOl6VgDRAVxC6qadmrGGPu1xYzV/LgCode88AAoc5qK1vR2IJ9Y8yRAfe83eOSWq+mn4bMjFRf2V1vjdkK4DmttLdvsjllF9IFa6nzAH7RCiKNGtoaky1rFI5dP8oOgOoukAGSlF0iSdklkpRdIknZJZKUXSJp6xeSsmN8u0OUygbwZ6Q14tEp+6/A6liqqWyvTfoVZqP6ZHUXasmq5Bjf3BsT6pOTX04kEolEIpFIJGS0/AMy3IgJmgE4KQAAAABJRU5ErkJggg==">
+                            <input class="py-[10px] w-full bg-transparent focus:outline-none" type="text" name="q"
+                                value="{{ query }}" placeholder="Buscar un zapato">
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</header>

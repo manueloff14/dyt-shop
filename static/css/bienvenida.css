@@ -1,0 +1,11 @@
+.bienvenida {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: #0CC0DF;
+    padding-top: 133px;
+
+    img {
+        width: 50%;
+    }
+}

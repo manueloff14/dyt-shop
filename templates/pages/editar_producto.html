@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Producto</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="p-3">
+        <div class="flex justify-between items-center mb-[20px]">
+            <img class="w-[100px] mb-[20px] mt-[20px]" src="{{ url_for('static', filename='img/d&t_logo.png') }}" alt="D&T Logo">
+            <a href="/cerrar_sesion">
+                <button class="bg-red-500 font-bold p-2 px-3 text-white rounded-full flex">
+                    Cerrar
+                    <img class="w-[20px] ml-2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB4klEQVR4nO3cu0ocURyA8dEqGLARUifxbkpJShvBeOlMXsTOXhvfRPARQiCSQgJpLVII60qiDxCIJsUXBFNpdA/snPP3zPd7gJ0/8+1ldi6naSRJkiRJkiRJkiRJkiRJkjREwBiwDXwCjoA94Nkwt6EBAePAV247A+YGfR0NCbDL//0wSmbAMfe7ABZyz9VZQO+BIEbJHGSfwXwHZrMO10XAK+BnQpSZ0jNXD1gFfiVEmS49c/WAlYQo1z/086Vnrh5pUc6NkoFRHn+UM2Cq9MzVwyjxYJQqokyWnrl6pEXpGyUDowSEn5R4MEoVUV42kQCvgc/AJd3UA543EQDLwFXpPRIkyovSMUaAb6X3RCD9oqdZrjdeeg8EVO7Ko0HiBRkFTu6eq5P6xc8MA0vAn9J7IoDyP+r/AIvAx4Rj99r0whz21gh4m/DmOg33x7DDMfrGiHO7kKfh22SMQIA1PxlBYIw4gPWEM9ReTw8Ww3uz2gJsGCMIjBEHsAn8HvBryput2wS8M0YQwPuEGD6w03KMNwnX/H2krW3AQUIMH/rMEOTEGIEAXx4I4sIBmYPs3BPDpTVyA57erAB01/UMF58pAXgCbAEfgMObBWkmigwjSZIkSZIkSZIkSZIkSZLURPEXqmOk4fWrSIkAAAAASUVORK5CYII=" alt="Login Icon">
+                </button>
+            </a>
+        </div>
+        <h1 class="font-bold text-3xl mb-4">Editar Producto</h1>
+    </div>
+    <form class="grid grid-cols-1 gap-4 p-3" action="{{ url_for('editar_producto', producto_id=producto.id) }}" method="POST" enctype="multipart/form-data">
+        <input class="p-3 px-5 bg-gray-100 rounded-full" type="text" id="nombre_producto" name="nombre_producto" value="{{ producto.nombre_producto }}" placeholder="Nombre del Producto" required>
+        <input class="p-3 px-5 bg-gray-100 rounded-full" type="number" id="precio_producto" name="precio_producto" value="{{ producto.precio_producto }}" placeholder="Precio del Producto" required>
+
+        <div class="mt-3">
+            <input type="checkbox" id="en_promocion" name="en_promocion" {% if producto.en_promocion %}checked{% endif %}>
+            <label for="en_promocion">En Promoción</label>
+            <input class="bg-gray-100 p-2 px-4 ml-2 rounded-full" type="number" id="porcentaje_promocion" name="porcentaje_promocion" value="{{ producto.porcentaje_promocion }}" placeholder="Porcentaje de Promoción">
+        </div>
+
+        <div class="flex flex-wrap gap-3 mt-3">
+            <div>
+                <input type="checkbox" id="para_ninos" name="para_ninos" {% if producto.para_ninos %}checked{% endif %}>
+                <label for="para_ninos">Para Niños</label>
+            </div>
+            <div>
+                <input type="checkbox" id="para_ninas" name="para_ninas" {% if producto.para_ninas %}checked{% endif %}>
+                <label for="para_ninas">Para Niñas</label>
+            </div>
+            <div>
+                <input type="checkbox" id="unisex" name="unisex" {% if producto.unisex %}checked{% endif %}>
+                <label for="unisex">Unisex</label>
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <input type="checkbox" id="envio_gratis" name="envio_gratis" {% if producto.envio_gratis %}checked{% endif %}>
+            <label class="mr-3" for="envio_gratis">Envío Gratis</label>
+            <input type="checkbox" id="envio_rapido" name="envio_rapido" {% if producto.envio_rapido %}checked{% endif %}>
+            <label for="envio_rapido">Envío Rápido</label>
+        </div>
+
+        <input class="p-3 px-5 bg-gray-100 rounded-full" type="text" id="categorias" name="categorias" value="{{ producto.categorias | join(', ') }}" placeholder="Categorías" required>
+
+        <textarea class="p-3 bg-gray-100 rounded-[20px]" id="descripcion_producto" name="descripcion_producto" placeholder="Descripción del Producto" rows="4" required>{{ producto.descripcion }}</textarea>
+
+        <input class="p-3 px-5 bg-gray-100 rounded-full" type="text" id="marca" name="marca" value="{{ producto.marca }}" placeholder="Marca" required>
+        <input class="p-3 px-5 bg-gray-100 rounded-full" type="text" id="color" name="color" value="{{ producto.color }}" placeholder="Color" required>
+
+        <label class="font-bold text-xl my-4" for="imagen_producto">Imagen del Producto:</label>
+        {% if producto.imagen_producto %}
+            <img src="{{ url_for('static', filename='archivos/' + producto.imagen_producto.split('/')[-1]) }}" alt="{{ producto.nombre_producto }}" class="w-24 h-24 mb-4">
+        {% endif %}
+        <input class="p-3 px-5 bg-gray-100 rounded-full" type="file" id="imagen_producto" name="imagen_producto" accept="image/png, image/jpeg, image/webp">
+
+        <h2 class="font-bold text-xl my-4">Detalles Adicionales</h2>
+        <div class="space-y-2">
+            {% for detalle in producto.detalles_adicionales %}
+                <div class="flex space-x-2">
+                    <input class="p-2 bg-gray-100 rounded-full w-full" type="text" name="detalles[]" value="{{ detalle.detalle }}" placeholder="Detalle">
+                    <input class="p-2 bg-gray-100 rounded-full w-full" type="text" name="valores[]" value="{{ detalle.valor }}" placeholder="Valor">
+                </div>
+            {% endfor %}
+        </div>
+        <button type="button" class="bg-blue-500 text-white px-4 py-2 hover:bg-blue-600 mt-4 rounded-full" onclick="agregarDetalle()">Agregar Detalle</button>
+
+        <button type="submit" class="bg-green-500 text-white px-4 py-2 hover:bg-green-600 mt-4 rounded-full">Guardar Cambios</button>
+    </form>
+
+    <form class="mt-4" action="{{ url_for('eliminar_producto', producto_id=producto.id) }}" method="POST">
+        <button type="submit" class="bg-red-500 text-white px-4 py-2 hover:bg-red-600 rounded-full">Eliminar Producto</button>
+    </form>
+
+    <script>
+        function agregarDetalle() {
+            const detallesContainer = document.querySelector('form.grid');
+            const detalleDiv = document.createElement('div');
+            detalleDiv.className = 'flex space-x-2 mt-2';
+            detalleDiv.innerHTML = `
+                <input class="p-2 bg-gray-100 rounded-full w-full" type="text" name="detalles[]" placeholder="Detalle">
+                <input class="p-2 bg-gray-100 rounded-full w-full" type="text" name="valores[]" placeholder="Valor">
+            `;
+            detallesContainer.appendChild(detalleDiv);
+        }
+    </script>
+</body>
+
+</html>

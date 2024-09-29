@@ -1,0 +1,58 @@
+<div class="bg-white content p-3">
+    <h1 class="my-3 font-bold text-2xl lg:hidden">Resultados de búsqueda</h1>
+    <div class="flex items-center justify-between mb-4">
+        <div class="flex flex-row lg:mr-[20px] xl:mb-2">
+            <span>{{ results|length }}</span>
+            <span class="mx-2">productos</span>
+        </div>
+        <select id="sort_by" name="sort_by" class="p-3 bg-gray-800 text-white rounded-full xl:w-[130px]">
+            <option value="relevancia" {% if sort_by == 'relevancia' %}selected{% endif %}>Relevancia</option>
+            <option value="precio_asc" {% if sort_by == 'precio_asc' %}selected{% endif %}>Precio: de menor a mayor</option>
+            <option value="precio_desc" {% if sort_by == 'precio_desc' %}selected{% endif %}>Precio: de mayor a menor</option>
+        </select>
+    </div>
+    <div class="xl:mt-[20px]">
+        <h1 class="font-bold text-3xl">Filtros</h1>
+        <ul class="my-3">
+            <li>
+                <h1>Géneral</h1>
+                <button class="my-3 bg-gray-800 w-full text-white font-bold py-3 rounded-full"
+                    onclick="mostrarDiv('general')">Filtro por
+                    géneral</button>
+            </li>
+            <li>
+                <h1>Precio</h1>
+                <button class="my-3 bg-gray-800 w-full text-white font-bold py-3 rounded-full"
+                    onclick="mostrarDiv('precio')">Filtro por
+                    precio</button>
+            </li>
+            <li>
+                <h1>Marca</h1>
+                <button class="my-3 bg-gray-800 w-full text-white font-bold py-3 rounded-full"
+                    onclick="mostrarDiv('marca')">Filtro por
+                    marca</button>
+            </li>
+            <li>
+                <h1>Color</h1>
+                <button class="my-3 bg-gray-800 w-full text-white font-bold py-3 rounded-full"
+                    onclick="mostrarDiv('color')">Filtro por
+                    color</button>
+            </li>
+        </ul>
+
+        <form id="filter-form">
+            <ul>
+                {% include 'filtros/general.html' %}
+                {% include 'filtros/precio.html' %}
+                {% include 'filtros/marca.html' %}
+                {% include 'filtros/color.html' %}
+                <li>
+                    <button id="apply-filters-btn" type="button"
+                        class="my-3 bg-sky-800 w-full text-white font-bold py-3 rounded-full border-2 border-black">Aplicar
+                        filtros</button>
+                </li>
+            </ul>
+        </form>
+
+    </div>
+</div>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar {{ query }} | Calzado deportivo D&T</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+        // Obtener filtros dinámicamente
+        $.getJSON("/get_filters", function (data) {
+            var marcas = data.marcas;
+            var colores = data.colores;
+            var selected_brands = {{ selected_brands| tojson }};
+            var selected_colors = {{ selected_colors| tojson }};
+            var sort_by = '{{ sort_by }}';
+
+            var marcaContainer = $("#marca-container");
+            marcaContainer.empty();
+            marcas.forEach(function (marca) {
+                var checked = selected_brands.includes(marca) ? 'checked' : '';
+                var checkbox = `<div class="check flex items-center space-x-2 mb-2">
+                    <input type="checkbox" name="marca" value="${marca}" id="check_${marca}" ${checked} class="h-4 w-4 text-indigo-600 border-gray-300">
+                    <label for="check_${marca}" class="text-gray-700">${marca}</label>
+                </div>`;
+                marcaContainer.append(checkbox);
+            });
+
+            var colorContainer = $("#color-container");
+            colorContainer.empty();
+            colores.forEach(function (color) {
+                var checked = selected_colors.includes(color) ? 'checked' : '';
+                var checkbox = `<div class="check flex items-center space-x-2 mb-2">
+                <input type="checkbox" name="color" value="${color}" id="check_${color}" ${checked} class="h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                <label for="check_${color}" class="text-gray-700">${color}</label>
+            </div>`;
+                colorContainer.append(checkbox);
+            });
+
+            // Set check for envio_gratis and envio_rapido
+            $('#check_envioGratis').prop('checked', {{ envio_gratis | tojson }});
+            $('#check_envioRapido').prop('checked', {{ envio_rapido | tojson }});
+
+            // Set price range values
+            $('#min-value').val({{ precio_min }});
+            $('#max-value').val({{ precio_max }});
+            $('.min-range').val({{ precio_min }});
+            $('.max-range').val({{ precio_max }});
+
+            // Set sort by value
+            $('#sort_by').val(sort_by);
+        });
+
+        // Manejar el envío del formulario con los filtros
+        $('#filter-form').on('submit', function () {
+            var urlParams = new URLSearchParams(window.location.search);
+
+            // Remove all filter parameters to avoid duplicates
+            $('#filter-form').find('input, select').each(function () {
+                urlParams.delete($(this).attr('name'));
+            });
+
+            // Add checked filters
+            $('#filter-form').find('input:checked').each(function () {
+                if ($(this).val() && $(this).attr('name')) {
+                    urlParams.append($(this).attr('name'), $(this).val());
+                }
+            });
+
+            // Add range and number inputs
+            $('#filter-form').find('input[type="range"], input[type="number"]').each(function () {
+                if ($(this).val() && $(this).attr('name')) {
+                    urlParams.set($(this).attr('name'), $(this).val());
+                }
+            });
+
+            // Add sort by value
+            urlParams.set('sort_by', $('#sort_by').val());
+
+            window.location.search = urlParams.toString();
+            return false;  // Evitar el envío del formulario por defecto
+        });
+
+        // Enviar el formulario cuando se presiona el botón "Aplicar Filtros"
+        $('#apply-filters-btn').on('click', function () {
+            $('#filter-form').submit();
+        });
+
+        // Enviar el formulario cuando se cambia el orden
+        $('#sort_by').on('change', function () {
+            $('#filter-form').submit();
+        });
+    });
+
+    </script>
+    {% include 'components/head.html' %}
+</head>
+
+<body>
+    {% include 'cabecera/cabecera.html' %}
+
+    {% include 'buscador/buscador.html' %}
+
+    {% include 'components/footer.html' %}
+    {% include 'components/form_buscar.html' %}
+    {% include 'components/menu_mobile.html' %}
+    <script src="{{ url_for('static', filename='js/ocultarCabecera.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/barraPrecio.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/ocultar_mostrar.js') }}"></script>
+</body>
+
+</html>

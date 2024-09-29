@@ -1,0 +1,19 @@
+<main class="pt-[120px] lg:flex lg:items-start xl:px-[110px] lg:pt-[140px]">
+    {% if results %}
+    {% include 'buscador/aside.html' %}
+    <div class="p-3">
+        <h1 class="hidden my-3 font-bold text-2xl lg:block">Resultados de búsqueda</h1>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-4">
+            <!-- Ejemplo de un resultado -->
+            {% for producto in results %}
+            {% include 'buscador/producto.html' %}
+            {% endfor %}
+            <!-- Repite el bloque anterior para más productos -->
+        </div>
+    </div>
+    </div>
+    </div>
+    {% else %}
+    <h2 class="p-3 mt-4 pb-[300px] font-bold text-2xl text-black">No se encontraron productos para "{{ query }}"</h2>
+    {% endif %}
+</main>

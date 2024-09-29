@@ -1,0 +1,93 @@
+<div class="bg-white content p-3 pt-[140px] xl:px-[110px]">
+    <div class="lg:flex lg:items-start lg:justify-center">
+        <div class="flex justify-center lg:mr-[80px]">
+            {% if producto['imagen_producto'] %}
+            <img class="w-[400px] h-[400px] object-center object-cover mb-[30px]"
+                src="{{ url_for('static', filename='archivos/' + producto['imagen_producto'].split('/')[-1]) }}" alt="">
+            {% endif %}
+        </div>
+        <div class="w-full lg:w-[500px]">
+            <h1 class="font-bold text-3xl mb-[10px]">{{ producto['nombre_producto'] }}</h1>
+            {% if producto['en_promocion'] %}
+                {% set precio_promocion = producto['precio_producto'] * (1 - producto['porcentaje_promocion'] / 100) %}
+                <div class="flex items-center">
+                    <h2 class="text-red-500 line-through">${{ "{:,.2f}".format(producto['precio_producto']).replace(',',
+                        'X').replace('.', ',').replace('X', '.') }} COP</h2>
+                    <h2 class="bg-[red] text-white font-bold py-1 px-2 text-sm rounded-full ml-2">-{{
+                        producto['porcentaje_promocion'] }}% OFF</h2>
+                </div>
+                <h1 class="my-[10px] font-bold text-xl text-gray-700">${{ "{:,.2f}".format(precio_promocion).replace(',', 'X').replace('.', ',').replace('X', '.') }} COP</h1>
+            {% else %}
+                <h1 class="my-[10px] font-bold text-xl text-gray-700">
+                    ${{ "{:,.2f}".format(producto['precio_producto']).replace(',', 'X').replace('.', ',').replace('X', '.') }} COP
+                </h1>
+            {% endif %}
+            <div class="my-8">
+                <h1 class="text-xl font-bold">Cantidad</h1>
+                <div class="my-3 flex items-center space-x-2 w-[30%]">
+                    <button class="bg-gray-800 text-white rounded-full px-4 py-2" onclick="decrementQuantity()">
+                        -
+                    </button>
+                    <input type="number"
+                        class="w-24 text-center border border-gray-300 rounded-full focus:outline-none px-4 py-2"
+                        value="1" oninput="validateQuantity()" id="quantity">
+                    <button class="bg-gray-800 text-white rounded-full px-4 py-2" onclick="incrementQuantity()">
+                        +
+                    </button>
+                </div>
+            </div>
+            <div class="my-5">
+                <h1 class="text-xl font-bold">Información del envío</h1>
+                <p class="py-[10px]">
+                    Tiempo estimado de entrega: 3-5 días hábiles.
+                </p>
+                <h1 class="text-xl font-bold mt-4">Consejos de Cuidado</h1>
+                <p class="py-[10px] mb-5">
+                    Limpia tus zapatos con un paño húmedo y deja que se sequen al aire.
+                    <br>Evita exponerlos al sol por periodos prolongados.
+                </p>
+            </div>
+            <form action="/comprar" method="POST" id="comprarForm">
+                <input type="hidden" name="producto_id" value="{{ producto['id'] }}">
+                <input type="hidden" name="cantidad" id="cantidadForm" value="1">
+                <button class="text-xl font-bold text-white bg-black w-full py-[10px] rounded-full">Comprar
+                    Ahora</button>
+            </form>
+        </div>
+    </div>
+    {% include 'producto/data.html' %}
+</div>
+
+<script>
+    function incrementQuantity() {
+        let quantityInput = document.getElementById('quantity');
+        let quantity = parseInt(quantityInput.value);
+        quantityInput.value = quantity + 1;
+        document.getElementById('cantidadForm').value = quantity + 1;
+    }
+
+    function decrementQuantity() {
+        let quantityInput = document.getElementById('quantity');
+        let quantity = parseInt(quantityInput.value);
+        if (quantity > 1) {
+            quantityInput.value = quantity - 1;
+            document.getElementById('cantidadForm').value = quantity - 1;
+        }
+    }
+
+    function validateQuantity() {
+        let quantityInput = document.getElementById('quantity');
+        quantityInput.value = quantityInput.value.replace(/[^0-9]/g, '');
+        let quantity = parseInt(quantityInput.value);
+        if (isNaN(quantity) || quantity < 1) {
+            quantityInput.value = 1;
+        }
+        document.getElementById('cantidadForm').value = quantityInput.value;
+    }
+
+    document.getElementById('quantity').addEventListener('input', validateQuantity);
+
+    document.getElementById('comprarForm').addEventListener('submit', function () {
+        document.getElementById('cantidadForm').value = document.getElementById('quantity').value;
+    });
+</script>

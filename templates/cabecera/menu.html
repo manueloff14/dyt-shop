@@ -1,0 +1,56 @@
+<div class="flex items-center p-3 text-white bg-gray-800 text-sm xl:px-[120px]">
+    <div>
+        <button class="flex items-center bg-gray-100 p-2 text-black font-bold rounded-full"
+            onclick="mostrarDiv('categorias')">
+            <img class="w-[15px] mr-[5px]"
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB2ElEQVR4nO3cz2pTQRSA8eO/3Z3z5R1EETdCi9Rn1oWIC13p27jTBKFKi6AEsogQrDcRe+7M94PZhZNhvkxCC0mEJEmSJEmSJEmSJEmSJEmKO57BSR5ExL3TRkTEarV6BrwHvgNXwNtpmp6cPHgQ0zQ9Bd4BP4DrzPyYmc+PjpGZX4Gf+ysz1621i3+++8601i62Z3Xg/C6B89kDd2V/G7Y3dGOUG2Ns/nB+H2Kmu7u3qYMDjXJ8jN26joj7MUdmfrthqDfluBjbdRVzZebrvxhslPkxtmf2JubKzIeHPpSMcnKM9fZs4xjAGfB5RpQXMRjgHPjy3164RikUY++JvSlVYuxtwChVYuxtZPgoVIlhlKgXY+QoVI0xYhSqxxgpCkuJMUIUlhaj5ygsNUaPUVh6jJ6i0EuMHqLQW4wlR6HXGEuMQu8xlhSFUWIsIQqjxagchVFjVIzC6DEqRcEYdaJgjDpRMEadKBijThSMUScKxqgTBWPUiYIx6kTBGHWiYIw6UTBGqe9cbOY8ttv/TVW6KRhjWVHSm1EnShqjTpQ0Rp0oaYw6UdIYdaKkMUr9uMvavzNuSWvtcWa+Aj7t1svW2qPb2o8kSZIkSZIkSZIkSZIkSVIsyi9Uj2/8YKaaDAAAAABJRU5ErkJggg==">
+            Todo
+        </button>
+        <div class="bg-[#000000c7] backdrop-blur fixed inset-0 z-50 opacity-0 hidden" id="categorias">
+            <div class="flex justify-start items-start h-full m-4 mt-[140px] xl:ml-[120px]">
+                <div class="bg-white p-5 rounded-[20px] shadow-xl w-[70%] text-black xl:w-[40%]">
+                    <header class="flex items-center justify-between font-bold mb-[20px]">
+                        <h1 class="font-bold text-2xl">Categorias</h1>
+                        <button onclick="ocultarDiv('categorias')" id="ocultar_menu">
+                            <img class="w-[20px]"
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAACnUlEQVR4nO3dMWsUURSG4VcFEbRLcchaCPYpXNGkDWJjY6OFTSwjoo2d2GjnnzA/R7DTwkJUsLMQQSPa6DCyMAPL4pK5a2bvued+L0x/Jg+T2Z25ywWllFJKKaWUUkoppZRSatZJ4BpwD7gJnKns3K8DD4FbwNncA10A3gDt3PEJuEz8NoFXC+f+BdjNNdAp4PXCQP3xDdghbga8XXLuh8D5HEPtLhloHmWbeE2Ad0ec++Mcg+0fMVRElMkAjNnxIsdwNwYMFgllMhBjdjzNMeBp4GMlKJMEjJ/AxVyDXur+2JFRJgkYDXAn98BT4GsCyk6QT1PtPzDu4qSIKFYqRkQUKx0jEopFwYiAYtEwSkaxqBglolh0jJJQrBaMElCsNgzPKFYrhkcUqx3DE4oJww+KCcMPignDD4oJww+KCcMPignDD4oJww+KCcMPignDD4oJww+KCWPcthOXGH1IeDa1N/LsYZsmXClt7Q8KS0NphOEHpRGGH5RGGH5QGmGMv/D5fQLIYaELvIvIEr5nDPlGrzJgtELxh9EKxR9GK5T1/3LpRwKKbvQjXhlN99HWwxKjkNl/PLUViiOMPqEcU3aM7zOE4gijTygrNuabvqlu9H4w+oQysHW+A5/qSvGD0SeUJeVcHTLVleIHo08ojjD6qkfxhEHtKB4xqkXxjFEdSgkY1aCUhBEepUSMsCglY4RDiYARBiUSRvEoETGKRdlMXKqzV8Evua7mGvQE8DI4xioon4ENHG5XEQVjFZRHZOhBRRipKFm2q7hdGUYKynMydK7bc6kmjCEov4EtMjXbne37wkC/PGzZsIaudDfw+XP/A9wnc7MNsJ4AB8CznJuZZGiju4EfdP+msl0ZSimllFJKKaWUUkoppXDUX+Hur2UX2ZKIAAAAAElFTkSuQmCC">
+                        </button>
+                    </header>
+                    <ul class="md:flex md:justify-between">
+                        <li><span class="font-bold text-xl">Niños</span>
+                            <br>
+                            <br>
+                            <ul class="ml-[20px] md:ml-[0px]">
+                                <li><a href="/search?q=para+niños+deportivo">Deportivos</a></li>
+                                <li><a href="/search?q=para+niños+casual">Casual</a></li>
+                                <li><a href="/search?q=para+niños+escolar">Escolar</a></li>
+                            </ul>
+                        </li>
+                        <br>
+                        <li><span class="font-bold text-xl">Niñas</span>
+                            <br>
+                            <br>
+                            <ul class="ml-[20px] md:ml-[0px]">
+                                <li><a href="/search?q=para+niñas+deportivo">Deportivos</a></li>
+                                <li><a href="/search?q=para+niñas+casual">Casual</a></li>
+                                <li><a href="/search?q=para+niños+escolar">Escolar</a></li>
+                            </ul>
+                            <br>
+                        </li>
+                        <li><span class="font-bold text-xl"><a href="/nuevos">Nuevos</a></span></li>
+                        <li><span class="font-bold text-xl"><a href="/contacto">Contacto</a></span></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul class="flex ml-3">
+        <li class="mx-2">
+            <a href="/envios_rapidos">Envíos rápidos</a>
+        </li>
+        <li>
+            <a href="/servicios">Servicios</a>
+        </li>
+    </ul>
+</div>

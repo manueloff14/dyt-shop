@@ -1,0 +1,29 @@
+{
+    "post-1": {
+        "author": "Manuel Cabreraaa",
+        "authorImage": "https://manueloff14.github.io/img/foto_manuel_cabrera.jpeg",
+        "date": "10 July 2024, 10:30 p.m.",
+        "postImage": "https://cdn.dribbble.com/users/1788965/screenshots/17000563/media/ead6692ef2ceab36459a0214a543a166.png?resize=400x300&vertical=center",
+        "description": "The new plantille from a Landing page for the Office the School, you like this plantille :D",
+        "likes": 126,
+        "github": "https://github.com"
+    },
+    "post-2": {
+        "author": "Manuel Cabrera",
+        "authorImage": "https://manueloff14.github.io/img/foto_manuel_cabrera.jpeg",
+        "date": "11 July 2024, 11:00 a.m.",
+        "postImage": "https://cdn.dribbble.com/users/1788965/screenshots/17000563/media/ead6692ef2ceab36459a0214a543a166.png?resize=400x300&vertical=center",
+        "description": "Another example post for the landing page.",
+        "likes": 164,
+        "github": "https://github.com"
+    },
+    "post-3": {
+        "author": "Manuel Cabrera",
+        "authorImage": "https://manueloff14.github.io/img/foto_manuel_cabrera.jpeg",
+        "date": "12 July 2024, 9:15 a.m.",
+        "postImage": "https://cdn.dribbble.com/users/1788965/screenshots/17000563/media/ead6692ef2ceab36459a0214a543a166.png?resize=400x300&vertical=center",
+        "description": "This is a sample post for demonstrating the JSON structure.",
+        "likes": 202,
+        "github": "https://github.com"
+    }
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cómo comprar | Calzado deportivo D&T</title>
+    {% include 'components/head.html' %}
+</head>
+<body>
+    {% include 'cabecera/cabecera.html' %}
+
+    <section class="p-3 pt-[140px] xl:px-[120px]">
+        <h1 class="text-3xl font-bold text-black mb-4">Cómo Comprar</h1>
+        <p class="text-gray-700 mb-4">
+            Comprar en nuestra tienda es un proceso sencillo y directo. A continuación, te explicamos paso a paso cómo puedes adquirir los zapatos de tus sueños de manera rápida y eficiente.
+        </p>
+        <h2 class="text-2xl font-bold text-black mb-3">Paso 1: Encuentra el Zapato de tus Sueños</h2>
+        <p class="text-gray-700 mb-4">
+            Navega por nuestra tienda y explora nuestra amplia selección de zapatos para niños y niñas. Estamos seguros de que encontrarás el par perfecto que cumpla con tus expectativas de calidad y estilo.
+        </p>
+        <h2 class="text-2xl font-bold text-black mb-3">Paso 2: Selecciona la Cantidad</h2>
+        <p class="text-gray-700 mb-4">
+            Una vez que hayas encontrado el zapato que deseas comprar, selecciona la cantidad de pares que necesitas. Puedes ajustar la cantidad según tus necesidades antes de proceder a la compra.
+        </p>
+        <h2 class="text-2xl font-bold text-black mb-3">Paso 3: Comprar Ahora</h2>
+        <p class="text-gray-700 mb-4">
+            Después de seleccionar la cantidad deseada, haz clic en el botón de "Comprar Ahora". Esto te llevará directamente a un chat en WhatsApp con nuestro equipo de compras, donde recibirás asistencia personalizada.
+        </p>
+        <h2 class="text-2xl font-bold text-black mb-3">Paso 4: Coordinación del Pago y Envío</h2>
+        <p class="text-gray-700 mb-4">
+            En el chat de WhatsApp, nuestro equipo de compras te guiará a través del proceso de pago y envío. Aquí podrás:
+        </p>
+        <ul class="list-disc list-inside text-gray-700 mb-4">
+            <li>Confirmar los detalles de tu pedido.</li>
+            <li>Elegir si deseas optar por el envío rápido, con un costo adicional de 15,000 pesos.</li>
+            <li>Recibir el total de la compra, incluyendo cualquier costo adicional de envío.</li>
+            <li>Obtener la información de la cuenta a la que debes depositar el dinero.</li>
+        </ul>
+        <p class="text-gray-700 mb-4">
+            Nuestro equipo estará disponible para responder cualquier pregunta y asegurarse de que el proceso sea lo más fluido posible.
+        </p>
+        <p class="text-center my-8">
+            {% include 'components/btn_whatsapp.html' %}
+        </p>
+        <p class="text-gray-700 mb-4">
+            Agradecemos tu confianza en nuestra tienda y estamos comprometidos a brindarte la mejor experiencia de compra posible.
+        </p>
+
+    </section>
+
+    {% include 'components/footer.html' %}
+    {% include 'components/form_buscar.html' %}
+    {% include 'components/menu_mobile.html' %}
+    <script src="{{ url_for('static', filename='js/ocultarCabecera.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/ocultar_mostrar.js') }}"></script>
+</body>
+</html>

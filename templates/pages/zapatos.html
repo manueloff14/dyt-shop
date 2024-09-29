@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+    <style>
+        body {
+            background-color: white;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="fixed w-full z-10">
+        <header class="flex items-center justify-between bg-white w-full p-3">
+            <img class="w-[100px] h-auto"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/2560px-Amazon_logo.svg.png"
+                alt="">
+            <div>
+                <div class="flex relative">
+                    <button class="flex bg-gray-200 p-2 rounded-full" onclick="mostrarDiv('buscar')">
+                        <img class="w-[20px]"
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFaElEQVR4nO2cz4scRRTH3wbc6MzU99vjOI4LexLRg0FB408UcwiJgj+if0eie9N4EhH0osasXkXij5gFET2EIJKoGDU5a+IlakKMa9bsxYPZDe7Kc2sljFPdM5Odrqre+kDBMjt0v3rz+lXV+9EiiUQikUgkEolEIpH4P51Opw5gO4DdAN4h+R3JUyTnSS7YMW8/+1a/Y7+7bWJiotbjkolV6vX69SSnAHxlFbk85FjQa2RZ9oxe878brHeyLHsQwCckL12Bcl1jUa/dbDYfkPVKlmUPAfhyBMrtOQB8oT+qrBdqtdoNJPeRXCpLyV1jpl6vd6TKkHzKLmLLnsc8yR1SQcZJvjGgFZ8j+T6AXbqbAHATyaaIXKVD/9bP9H/GmKf1uyR/G+D6SwBet9eLn3a73SD5WZ+TPw9gD8k7h70fgM32R53r856HVEaJGWNMi+TxPhaq0wB2Tk5OXrNW99Zr2afhTB/KPqaySozowYHkNwUTXFTrG6VFqcJJvkDyYoEsx2O07PE+3MUPzWbz1rIEajabm0ieKHIjUfls6yPzJrTfx1G50+nUdXtX4MZekxjIsuyxgt3FmyKywaOIYwBezduNkHxSIjiM5O2T90ogkJzOkfNC0HESku/muQvPltzNhjw3ohFBCTV24XIZAL4PMXzZXtnjn3S5kCCDUTkBootl7i4GJcuy21xhWQCHJSSMMffluIwXJXBIvuySPyirtvHknie+tTztjTijc9Yxh48loMzIokPInRIJJKdcp9dGo9EOWcDzMVhzV8igZyBKYybiG5vj6yXcHokMknsdczniVTB7pHUlUu+QyABwl2vn5PXp1KC7Q7BzEidjJGcdc9rqTSoAzzuEek8iheR+x5ye9SaULW4Jc/EYEq0HcczpbfGFVgk5hNomkQLgYYdFH/Up1M8OoW6USMFKEriX8fzkTSgNJzqEulbiznMu9xhz3oRybe00lSXxMu7a4nmTqKKK3uhQ9II3iaroOhqNxnUORV/wJtQ6WwxPh7i92y6RYox5xGE8Xwd3YNFaOIkUuqOR+7wJpe0MDqE+kEgh+aHjKd3tTSh1EQ5Fz2qARqoVVNriO1juSmxulsgwxtzjUPKihoSDDPxrWZhEBh1FNQA+DzbapamsEGs5Cp7OP4LNfRYkZ3dVITlbq9UmJPBygzMxWHVnpdzgV4eiD0goaJGJQ0gdL0ngkHwligIaRfv4ckrCNkmgZFl2e87Oyf8i2I02S+bURZ/wvj3qQavVMiR/dMi8ZIy5V0LENmq6XMhMaGW7AD6KrmxX0Y7UgkL0aQkEkm/lyDmn4VIJGWPMoxVordghMaAdqTkT+deN+Gg1a7VaJs9dRNUsZNEW4kMFyj6pReAl7y5cC9/l46CmsySyI+3Rfho6W62WGbEc/TR0dvcbXi2Rpe6PFU0MwFmNmazlKdIqeCrnxFcty7YNOUVuZHl1tdfSWQB3DxnPHrOhzmlXgKjSylafrYvMgK+RmNWCQ7V0LdMyxtxsXyOhpQzjmmk3xtxiS7imbGbk9wFfI6EyHayasnVBesJVosByx1yWZY9fVsdRPWWrJdpe8b89KXmmR0+KPiGfVmqBXEWjYgAOl6VgDRAVxC6qadmrGGPu1xYzV/LgCode88AAoc5qK1vR2IJ9Y8yRAfe83eOSWq+mn4bMjFRf2V1vjdkK4DmttLdvsjllF9IFa6nzAH7RCiKNGtoaky1rFI5dP8oOgOoukAGSlF0iSdklkpRdIknZJZKUXSJp6xeSsmN8u0OUygbwZ6Q14tEp+6/A6liqqWyvTfoVZqP6ZHUXasmq5Bjf3BsT6pOTX04kEolEIpFIJGS0/AMy3IgJmgE4KQAAAABJRU5ErkJggg==">
+                    </button>
+                    <button class="flex bg-gray-200 p-2 ml-2 rounded-full" id="mostrar_menu"
+                        onclick="mostrarDiv('menu')">
+                        <img class="w-[20px]"
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAABDUlEQVR4nO3aS07EMBAE0EhsrS7lGIA4O58Vw6UQsJvNIB8hUSwc8Z7UF+hKbC9qWQAAAAAAAP6xdV0fq+qtqr6S3Ex276DvsKpeW2sPe8N4qqofIeTQD7HvtO92cyBJPoSRUafCZWsed0muAsmoQK59xwLJeQNxZGVoIO9bjyyXesaEUVXfuy71rj/Rquqlqj4n+M1vZ56+w6p6bq3d7woDAAAAAAAAAAD20X7PkTUg7ffMGYz2e+Yb7ffMNdrvOXkg2u8ZGoj2eyYZ7fdME4T2OwAAAAAAAAAAf0H7PUfWgLTfM2cw2u+Zb7TfM9dov+fkgWi/Z2gg2u+ZZLTfM00Q2u8AAAAAAMDCsvwCOOWA78bM7f8AAAAASUVORK5CYII=">
+                    </button>
+
+                    <div class="bg-[#000000c7] backdrop-blur fixed inset-0 z-50 opacity-0 hidden" id="menu">
+                        <div class="flex justify-end items-start h-full m-4">
+                            <div class="bg-white p-5 rounded-[20px] shadow-xl w-[70%]">
+                                <header class="flex items-center justify-between font-bold mb-[20px]">
+                                    <h1 class="font-bold text-xl">Menú</h1>
+                                    <button onclick="ocultarDiv('menu')" id="ocultar_menu">
+                                        <img class="w-[20px]"
+                                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAACnUlEQVR4nO3dMWsUURSG4VcFEbRLcchaCPYpXNGkDWJjY6OFTSwjoo2d2GjnnzA/R7DTwkJUsLMQQSPa6DCyMAPL4pK5a2bvued+L0x/Jg+T2Z25ywWllFJKKaWUUkoppZRSatZJ4BpwD7gJnKns3K8DD4FbwNncA10A3gDt3PEJuEz8NoFXC+f+BdjNNdAp4PXCQP3xDdghbga8XXLuh8D5HEPtLhloHmWbeE2Ad0ec++Mcg+0fMVRElMkAjNnxIsdwNwYMFgllMhBjdjzNMeBp4GMlKJMEjJ/AxVyDXur+2JFRJgkYDXAn98BT4GsCyk6QT1PtPzDu4qSIKFYqRkQUKx0jEopFwYiAYtEwSkaxqBglolh0jJJQrBaMElCsNgzPKFYrhkcUqx3DE4oJww+KCcMPignDD4oJww+KCcMPignDD4oJww+KCcMPignDD4oJww+KCWPcthOXGH1IeDa1N/LsYZsmXClt7Q8KS0NphOEHpRGGH5RGGH5QGmGMv/D5fQLIYaELvIvIEr5nDPlGrzJgtELxh9EKxR9GK5T1/3LpRwKKbvQjXhlN99HWwxKjkNl/PLUViiOMPqEcU3aM7zOE4gijTygrNuabvqlu9H4w+oQysHW+A5/qSvGD0SeUJeVcHTLVleIHo08ojjD6qkfxhEHtKB4xqkXxjFEdSgkY1aCUhBEepUSMsCglY4RDiYARBiUSRvEoETGKRdlMXKqzV8Evua7mGvQE8DI4xioon4ENHG5XEQVjFZRHZOhBRRipKFm2q7hdGUYKynMydK7bc6kmjCEov4EtMjXbne37wkC/PGzZsIaudDfw+XP/A9wnc7MNsJ4AB8CznJuZZGiju4EfdP+msl0ZSimllFJKKaWUUkoppXDUX+Hur2UX2ZKIAAAAAElFTkSuQmCC">
+                                    </button>
+                                </header>
+                                <ul>
+                                    <li>
+                                        Acceder
+                                    </li>
+                                    <li>
+                                        PQR
+                                    </li>
+                                    <li>
+                                        Devolver un pedido
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-[#000000c7] backdrop-blur fixed inset-0 z-50 opacity-0 hidden" id="buscar">
+                        <div class="flex justify-start items-start h-full m-4 mt-[20px]">
+                            <div class="bg-white p-5 rounded-[20px] shadow-xl w-[100%] text-black">
+                                <header class="flex items-center justify-between font-bold mb-[20px]">
+                                    <h1 class="font-bold text-2xl">Buscar</h1>
+                                    <button onclick="ocultarDiv('buscar')" id="ocultar_menu">
+                                        <img class="w-[20px]"
+                                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAACnUlEQVR4nO3dMWsUURSG4VcFEbRLcchaCPYpXNGkDWJjY6OFTSwjoo2d2GjnnzA/R7DTwkJUsLMQQSPa6DCyMAPL4pK5a2bvued+L0x/Jg+T2Z25ywWllFJKKaWUUkoppZRSatZJ4BpwD7gJnKns3K8DD4FbwNncA10A3gDt3PEJuEz8NoFXC+f+BdjNNdAp4PXCQP3xDdghbga8XXLuh8D5HEPtLhloHmWbeE2Ad0ec++Mcg+0fMVRElMkAjNnxIsdwNwYMFgllMhBjdjzNMeBp4GMlKJMEjJ/AxVyDXur+2JFRJgkYDXAn98BT4GsCyk6QT1PtPzDu4qSIKFYqRkQUKx0jEopFwYiAYtEwSkaxqBglolh0jJJQrBaMElCsNgzPKFYrhkcUqx3DE4oJww+KCcMPignDD4oJww+KCcMPignDD4oJww+KCcMPignDD4oJww+KCWPcthOXGH1IeDa1N/LsYZsmXClt7Q8KS0NphOEHpRGGH5RGGH5QGmGMv/D5fQLIYaELvIvIEr5nDPlGrzJgtELxh9EKxR9GK5T1/3LpRwKKbvQjXhlN99HWwxKjkNl/PLUViiOMPqEcU3aM7zOE4gijTygrNuabvqlu9H4w+oQysHW+A5/qSvGD0SeUJeVcHTLVleIHo08ojjD6qkfxhEHtKB4xqkXxjFEdSgkY1aCUhBEepUSMsCglY4RDiYARBiUSRvEoETGKRdlMXKqzV8Evua7mGvQE8DI4xioon4ENHG5XEQVjFZRHZOhBRRipKFm2q7hdGUYKynMydK7bc6kmjCEov4EtMjXbne37wkC/PGzZsIaudDfw+XP/A9wnc7MNsJ4AB8CznJuZZGiju4EfdP+msl0ZSimllFJKKaWUUkoppXDUX+Hur2UX2ZKIAAAAAElFTkSuQmCC">
+                                    </button>
+                                </header>
+                                <form action="" class="bg-gray-100 flex items-center px-[10px] rounded-full group focus-within:ring-2 focus-within:ring-blue-500">
+                                    <img class="w-[20px] mr-[10px]"
+                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFaElEQVR4nO2cz4scRRTH3wbc6MzU99vjOI4LexLRg0FB408UcwiJgj+if0eie9N4EhH0osasXkXij5gFET2EIJKoGDU5a+IlakKMa9bsxYPZDe7Kc2sljFPdM5Odrqre+kDBMjt0v3rz+lXV+9EiiUQikUgkEolEIpH4P51Opw5gO4DdAN4h+R3JUyTnSS7YMW8/+1a/Y7+7bWJiotbjkolV6vX69SSnAHxlFbk85FjQa2RZ9oxe878brHeyLHsQwCckL12Bcl1jUa/dbDYfkPVKlmUPAfhyBMrtOQB8oT+qrBdqtdoNJPeRXCpLyV1jpl6vd6TKkHzKLmLLnsc8yR1SQcZJvjGgFZ8j+T6AXbqbAHATyaaIXKVD/9bP9H/GmKf1uyR/G+D6SwBet9eLn3a73SD5WZ+TPw9gD8k7h70fgM32R53r856HVEaJGWNMi+TxPhaq0wB2Tk5OXrNW99Zr2afhTB/KPqaySozowYHkNwUTXFTrG6VFqcJJvkDyYoEsx2O07PE+3MUPzWbz1rIEajabm0ieKHIjUfls6yPzJrTfx1G50+nUdXtX4MZekxjIsuyxgt3FmyKywaOIYwBezduNkHxSIjiM5O2T90ogkJzOkfNC0HESku/muQvPltzNhjw3ohFBCTV24XIZAL4PMXzZXtnjn3S5kCCDUTkBootl7i4GJcuy21xhWQCHJSSMMffluIwXJXBIvuySPyirtvHknie+tTztjTijc9Yxh48loMzIokPInRIJJKdcp9dGo9EOWcDzMVhzV8igZyBKYybiG5vj6yXcHokMknsdczniVTB7pHUlUu+QyABwl2vn5PXp1KC7Q7BzEidjJGcdc9rqTSoAzzuEek8iheR+x5ye9SaULW4Jc/EYEq0HcczpbfGFVgk5hNomkQLgYYdFH/Up1M8OoW6USMFKEriX8fzkTSgNJzqEulbiznMu9xhz3oRybe00lSXxMu7a4nmTqKKK3uhQ9II3iaroOhqNxnUORV/wJtQ6WwxPh7i92y6RYox5xGE8Xwd3YNFaOIkUuqOR+7wJpe0MDqE+kEgh+aHjKd3tTSh1EQ5Fz2qARqoVVNriO1juSmxulsgwxtzjUPKihoSDDPxrWZhEBh1FNQA+DzbapamsEGs5Cp7OP4LNfRYkZ3dVITlbq9UmJPBygzMxWHVnpdzgV4eiD0goaJGJQ0gdL0ngkHwligIaRfv4ckrCNkmgZFl2e87Oyf8i2I02S+bURZ/wvj3qQavVMiR/dMi8ZIy5V0LENmq6XMhMaGW7AD6KrmxX0Y7UgkL0aQkEkm/lyDmn4VIJGWPMoxVordghMaAdqTkT+deN+Gg1a7VaJs9dRNUsZNEW4kMFyj6pReAl7y5cC9/l46CmsySyI+3Rfho6W62WGbEc/TR0dvcbXi2Rpe6PFU0MwFmNmazlKdIqeCrnxFcty7YNOUVuZHl1tdfSWQB3DxnPHrOhzmlXgKjSylafrYvMgK+RmNWCQ7V0LdMyxtxsXyOhpQzjmmk3xtxiS7imbGbk9wFfI6EyHayasnVBesJVosByx1yWZY9fVsdRPWWrJdpe8b89KXmmR0+KPiGfVmqBXEWjYgAOl6VgDRAVxC6qadmrGGPu1xYzV/LgCode88AAoc5qK1vR2IJ9Y8yRAfe83eOSWq+mn4bMjFRf2V1vjdkK4DmttLdvsjllF9IFa6nzAH7RCiKNGtoaky1rFI5dP8oOgOoukAGSlF0iSdklkpRdIknZJZKUXSJp6xeSsmN8u0OUygbwZ6Q14tEp+6/A6liqqWyvTfoVZqP6ZHUXasmq5Bjf3BsT6pOTX04kEolEIpFIJGS0/AMy3IgJmgE4KQAAAABJRU5ErkJggg==">
+                                    <input class="py-[10px] w-full bg-transparent focus:outline-none" type="text" name="" id="" placeholder="Buscar un zapato">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+        <div class="flex items-center p-3 text-white bg-gray-800 text-sm">
+            <div>
+                <button class="flex items-center bg-gray-100 p-2 text-black font-bold rounded-full"
+                    onclick="mostrarDiv('categorias')">
+                    <img class="w-[15px] mr-[5px]"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB2ElEQVR4nO3cz2pTQRSA8eO/3Z3z5R1EETdCi9Rn1oWIC13p27jTBKFKi6AEsogQrDcRe+7M94PZhZNhvkxCC0mEJEmSJEmSJEmSJEmSJEmKO57BSR5ExL3TRkTEarV6BrwHvgNXwNtpmp6cPHgQ0zQ9Bd4BP4DrzPyYmc+PjpGZX4Gf+ysz1621i3+++8601i62Z3Xg/C6B89kDd2V/G7Y3dGOUG2Ns/nB+H2Kmu7u3qYMDjXJ8jN26joj7MUdmfrthqDfluBjbdRVzZebrvxhslPkxtmf2JubKzIeHPpSMcnKM9fZs4xjAGfB5RpQXMRjgHPjy3164RikUY++JvSlVYuxtwChVYuxtZPgoVIlhlKgXY+QoVI0xYhSqxxgpCkuJMUIUlhaj5ygsNUaPUVh6jJ6i0EuMHqLQW4wlR6HXGEuMQu8xlhSFUWIsIQqjxagchVFjVIzC6DEqRcEYdaJgjDpRMEadKBijThSMUScKxqgTBWPUiYIx6kTBGHWiYIw6UTBGqe9cbOY8ttv/TVW6KRhjWVHSm1EnShqjTpQ0Rp0oaYw6UdIYdaKkMUr9uMvavzNuSWvtcWa+Aj7t1svW2qPb2o8kSZIkSZIkSZIkSZIkSVIsyi9Uj2/8YKaaDAAAAABJRU5ErkJggg==">
+                    Todo
+                </button>
+                <div class="bg-[#000000c7] backdrop-blur fixed inset-0 z-50 opacity-0 hidden" id="categorias">
+                    <div class="flex justify-start items-start h-full m-4 mt-[140px]">
+                        <div class="bg-white p-5 rounded-[20px] shadow-xl w-[70%] text-black">
+                            <header class="flex items-center justify-between font-bold mb-[20px]">
+                                <h1 class="font-bold text-2xl">Categorias</h1>
+                                <button onclick="ocultarDiv('categorias')" id="ocultar_menu">
+                                    <img class="w-[20px]"
+                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAACnUlEQVR4nO3dMWsUURSG4VcFEbRLcchaCPYpXNGkDWJjY6OFTSwjoo2d2GjnnzA/R7DTwkJUsLMQQSPa6DCyMAPL4pK5a2bvued+L0x/Jg+T2Z25ywWllFJKKaWUUkoppZRSatZJ4BpwD7gJnKns3K8DD4FbwNncA10A3gDt3PEJuEz8NoFXC+f+BdjNNdAp4PXCQP3xDdghbga8XXLuh8D5HEPtLhloHmWbeE2Ad0ec++Mcg+0fMVRElMkAjNnxIsdwNwYMFgllMhBjdjzNMeBp4GMlKJMEjJ/AxVyDXur+2JFRJgkYDXAn98BT4GsCyk6QT1PtPzDu4qSIKFYqRkQUKx0jEopFwYiAYtEwSkaxqBglolh0jJJQrBaMElCsNgzPKFYrhkcUqx3DE4oJww+KCcMPignDD4oJww+KCcMPignDD4oJww+KCcMPignDD4oJww+KCWPcthOXGH1IeDa1N/LsYZsmXClt7Q8KS0NphOEHpRGGH5RGGH5QGmGMv/D5fQLIYaELvIvIEr5nDPlGrzJgtELxh9EKxR9GK5T1/3LpRwKKbvQjXhlN99HWwxKjkNl/PLUViiOMPqEcU3aM7zOE4gijTygrNuabvqlu9H4w+oQysHW+A5/qSvGD0SeUJeVcHTLVleIHo08ojjD6qkfxhEHtKB4xqkXxjFEdSgkY1aCUhBEepUSMsCglY4RDiYARBiUSRvEoETGKRdlMXKqzV8Evua7mGvQE8DI4xioon4ENHG5XEQVjFZRHZOhBRRipKFm2q7hdGUYKynMydK7bc6kmjCEov4EtMjXbne37wkC/PGzZsIaudDfw+XP/A9wnc7MNsJ4AB8CznJuZZGiju4EfdP+msl0ZSimllFJKKaWUUkoppXDUX+Hur2UX2ZKIAAAAAElFTkSuQmCC">
+                                </button>
+                            </header>
+                            <ul>
+                                <li><span class="font-bold text-xl">Niños</span>
+                                    <br>
+                                    <br>
+                                    <ul class="ml-[20px]">
+                                        <li>Deportivos</li>
+                                        <li>Casual</li>
+                                        <li>Escolar</li>
+                                    </ul>
+                                </li>
+                                <br>
+                                <li><span class="font-bold text-xl">Niñas</span>
+                                    <br>
+                                    <br>
+                                    <ul class="ml-[20px]">
+                                        <li>Deportivos</li>
+                                        <li>Casual</li>
+                                        <li>Escolar</li>
+                                    </ul>
+                                    <br>
+                                </li>
+                                <li><span class="font-bold text-xl">Ofertas</span></li>
+                                <li><span class="font-bold text-xl">Nuevas colecciones</span></li>
+                                <li><span class="font-bold text-xl">Contacto</span></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul class="flex ml-3">
+                <li>
+                    Envíos gratis
+                </li>
+                <li class="mx-2">
+                    Envíos rápidos
+                </li>
+                <li>
+                    Servicios
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="bg-white content p-3 pt-[120px]">
+        <h1 class="my-3 font-bold text-2xl">Resultados de búsqueda</h1>
+        <div class="flex items-center justify-between mb-4">
+            <span>2 productos</span>
+            <select name="" id="" class="p-3 bg-gray-800 text-white rounded-full">
+                <option value="">Relevancia</option>
+                <option value="">Precio, mayor a menor</option>
+                <option value="">Precio, menor a mayor</option>
+            </select>
+        </div>
+        <div>
+            <h1 class="font-bold text-3xl">Filtros</h1>
+            <ul class="my-3">
+                <li>
+                    <h1>Géneral</h1>
+                    <button class="my-3 bg-gray-800 w-full text-white font-bold py-3 rounded-full"
+                        onclick="mostrarDiv('general')">Filtro por
+                        géneral</button>
+                </li>
+                <li>
+                    <h1>Precio</h1>
+                    <button class="my-3 bg-gray-800 w-full text-white font-bold py-3 rounded-full"
+                        onclick="mostrarDiv('precio')">Filtro por
+                        precio</button>
+                </li>
+                <li>
+                    <h1>Marca</h1>
+                    <button class="my-3 bg-gray-800 w-full text-white font-bold py-3 rounded-full"
+                        onclick="mostrarDiv('marca')">Filtro por
+                        marca</button>
+                </li>
+                <li>
+                    <h1>Color</h1>
+                    <button class="my-3 bg-gray-800 w-full text-white font-bold py-3 rounded-full"
+                        onclick="mostrarDiv('color')">Filtro por
+                        color</button>
+                </li>
+                <li>
+                    <button
+                        class="my-3 bg-sky-800 w-full text-white font-bold py-3 rounded-full border-2 border-black">Aplicar
+                        filtros</button>
+                </li>
+            </ul>
+
+            <div class="bg-[#000000c7] backdrop-blur fixed inset-0 z-50 opacity-0 hidden" id="general">
+                <div class="flex justify-center items-center h-full">
+                    <div class="bg-white p-5 rounded-[20px] shadow-xl w-[70%]">
+                        <header class="flex items-center justify-between mb-[10px]">
+                            Filtro
+                            <button onclick="ocultarDiv('general')">
+                                <img class="w-[20px]"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAACnUlEQVR4nO3dMWsUURSG4VcFEbRLcchaCPYpXNGkDWJjY6OFTSwjoo2d2GjnnzA/R7DTwkJUsLMQQSPa6DCyMAPL4pK5a2bvued+L0x/Jg+T2Z25ywWllFJKKaWUUkoppZRSatZJ4BpwD7gJnKns3K8DD4FbwNncA10A3gDt3PEJuEz8NoFXC+f+BdjNNdAp4PXCQP3xDdghbga8XXLuh8D5HEPtLhloHmWbeE2Ad0ec++Mcg+0fMVRElMkAjNnxIsdwNwYMFgllMhBjdjzNMeBp4GMlKJMEjJ/AxVyDXur+2JFRJgkYDXAn98BT4GsCyk6QT1PtPzDu4qSIKFYqRkQUKx0jEopFwYiAYtEwSkaxqBglolh0jJJQrBaMElCsNgzPKFYrhkcUqx3DE4oJww+KCcMPignDD4oJww+KCcMPignDD4oJww+KCcMPignDD4oJww+KCWPcthOXGH1IeDa1N/LsYZsmXClt7Q8KS0NphOEHpRGGH5RGGH5QGmGMv/D5fQLIYaELvIvIEr5nDPlGrzJgtELxh9EKxR9GK5T1/3LpRwKKbvQjXhlN99HWwxKjkNl/PLUViiOMPqEcU3aM7zOE4gijTygrNuabvqlu9H4w+oQysHW+A5/qSvGD0SeUJeVcHTLVleIHo08ojjD6qkfxhEHtKB4xqkXxjFEdSgkY1aCUhBEepUSMsCglY4RDiYARBiUSRvEoETGKRdlMXKqzV8Evua7mGvQE8DI4xioon4ENHG5XEQVjFZRHZOhBRRipKFm2q7hdGUYKynMydK7bc6kmjCEov4EtMjXbne37wkC/PGzZsIaudDfw+XP/A9wnc7MNsJ4AB8CznJuZZGiju4EfdP+msl0ZSimllFJKKaWUUkoppXDUX+Hur2UX2ZKIAAAAAElFTkSuQmCC"
+                                    alt="">
+                            </button>
+                        </header>
+                        <ul>
+                            <div class="check flex items-center space-x-2 mb-2">
+                                <input type="checkbox" name="envio_gratis" id="check_envioGratis"
+                                    class="h-4 w-4 text-indigo-600 border-gray-300">
+                                <label for="check_envioGratis" class="text-gray-700">Envío gratis</label>
+                            </div>
+                            <div class="check flex items-center space-x-2 mb-2">
+                                <input type="checkbox" name="envio_rapido" id="check_envioRapido"
+                                    class="h-4 w-4 text-indigo-600 border-gray-300">
+                                <label for="check_envioRapido" class="text-gray-700">Envío rápido</label>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-[#000000c7] backdrop-blur fixed inset-0 z-50 opacity-0 hidden" id="color">
+                <div class="flex justify-center items-center h-full">
+                    <div class="bg-white p-5 rounded-[20px] shadow-xl w-[70%]">
+                        <header class="flex items-center justify-between mb-[10px]">
+                            Filtro
+                            <button onclick="ocultarDiv('color')">
+                                <img class="w-[20px]"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAACnUlEQVR4nO3dMWsUURSG4VcFEbRLcchaCPYpXNGkDWJjY6OFTSwjoo2d2GjnnzA/R7DTwkJUsLMQQSPa6DCyMAPL4pK5a2bvued+L0x/Jg+T2Z25ywWllFJKKaWUUkoppZRSatZJ4BpwD7gJnKns3K8DD4FbwNncA10A3gDt3PEJuEz8NoFXC+f+BdjNNdAp4PXCQP3xDdghbga8XXLuh8D5HEPtLhloHmWbeE2Ad0ec++Mcg+0fMVRElMkAjNnxIsdwNwYMFgllMhBjdjzNMeBp4GMlKJMEjJ/AxVyDXur+2JFRJgkYDXAn98BT4GsCyk6QT1PtPzDu4qSIKFYqRkQUKx0jEopFwYiAYtEwSkaxqBglolh0jJJQrBaMElCsNgzPKFYrhkcUqx3DE4oJww+KCcMPignDD4oJww+KCcMPignDD4oJww+KCcMPignDD4oJww+KCWPcthOXGH1IeDa1N/LsYZsmXClt7Q8KS0NphOEHpRGGH5RGGH5QGmGMv/D5fQLIYaELvIvIEr5nDPlGrzJgtELxh9EKxR9GK5T1/3LpRwKKbvQjXhlN99HWwxKjkNl/PLUViiOMPqEcU3aM7zOE4gijTygrNuabvqlu9H4w+oQysHW+A5/qSvGD0SeUJeVcHTLVleIHo08ojjD6qkfxhEHtKB4xqkXxjFEdSgkY1aCUhBEepUSMsCglY4RDiYARBiUSRvEoETGKRdlMXKqzV8Evua7mGvQE8DI4xioon4ENHG5XEQVjFZRHZOhBRRipKFm2q7hdGUYKynMydK7bc6kmjCEov4EtMjXbne37wkC/PGzZsIaudDfw+XP/A9wnc7MNsJ4AB8CznJuZZGiju4EfdP+msl0ZSimllFJKKaWUUkoppXDUX+Hur2UX2ZKIAAAAAElFTkSuQmCC"
+                                    alt="">
+                            </button>
+                        </header>
+                        <div id="color-container">
+                            <!-- Los colores se cargarán aquí dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-[#000000c7] backdrop-blur fixed inset-0 z-50 opacity-0 hidden" id="marca">
+                <div class="flex justify-center items-center h-full">
+                    <div class="bg-white p-5 rounded-[20px] shadow-xl w-[70%]">
+                        <header class="flex items-center justify-between mb-[10px]">
+                            Filtro
+                            <button onclick="ocultarDiv('marca')">
+                                <img class="w-[20px]"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAACnUlEQVR4nO3dMWsUURSG4VcFEbRLcchaCPYpXNGkDWJjY6OFTSwjoo2d2GjnnzA/R7DTwkJUsLMQQSPa6DCyMAPL4pK5a2bvued+L0x/Jg+T2Z25ywWllFJKKaWUUkoppZRSatZJ4BpwD7gJnKns3K8DD4FbwNncA10A3gDt3PEJuEz8NoFXC+f+BdjNNdAp4PXCQP3xDdghbga8XXLuh8D5HEPtLhloHmWbeE2Ad0ec++Mcg+0fMVRElMkAjNnxIsdwNwYMFgllMhBjdjzNMeBp4GMlKJMEjJ/AxVyDXur+2JFRJgkYDXAn98BT4GsCyk6QT1PtPzDu4qSIKFYqRkQUKx0jEopFwYiAYtEwSkaxqBglolh0jJJQrBaMElCsNgzPKFYrhkcUqx3DE4oJww+KCcMPignDD4oJww+KCcMPignDD4oJww+KCcMPignDD4oJww+KCWPcthOXGH1IeDa1N/LsYZsmXClt7Q8KS0NphOEHpRGGH5RGGH5QGmGMv/D5fQLIYaELvIvIEr5nDPlGrzJgtELxh9EKxR9GK5T1/3LpRwKKbvQjXhlN99HWwxKjkNl/PLUViiOMPqEcU3aM7zOE4gijTygrNuabvqlu9H4w+oQysHW+A5/qSvGD0SeUJeVcHTLVleIHo08ojjD6qkfxhEHtKB4xqkXxjFEdSgkY1aCUhBEepUSMsCglY4RDiYARBiUSRvEoETGKRdlMXKqzV8Evua7mGvQE8DI4xioon4ENHG5XEQVjFZRHZOhBRRipKFm2q7hdGUYKynMydK7bc6kmjCEov4EtMjXbne37wkC/PGzZsIaudDfw+XP/A9wnc7MNsJ4AB8CznJuZZGiju4EfdP+msl0ZSimllFJKKaWUUkoppXDUX+Hur2UX2ZKIAAAAAElFTkSuQmCC"
+                                    alt="">
+                            </button>
+                        </header>
+                        <div id="marca-container">
+                            <!-- Las marcas se cargarán aquí dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-[#000000c7] backdrop-blur fixed inset-0 z-50 opacity-0 flex items-center justify-center hidden"
+                id="precio">
+                <div class="flex justify-center items-center h-full w-full">
+                    <div class="bg-white p-5 rounded-[20px] shadow-xl w-[70%]">
+                        <header class="flex items-center justify-between mb-[10px]">
+                            Filtro
+                            <button onclick="ocultarDiv('precio')">
+                                <img class="w-[20px]"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAACnUlEQVR4nO3dMWsUURSG4VcFEbRLcchaCPYpXNGkDWJjY6OFTSwjoo2d2GjnnzA/R7DTwkJUsLMQQSPa6DCyMAPL4pK5a2bvued+L0x/Jg+T2Z25ywWllFJKKaWUUkoppZRSatZJ4BpwD7gJnKns3K8DD4FbwNncA10A3gDt3PEJuEz8NoFXC+f+BdjNNdAp4PXCQP3xDdghbga8XXLuh8D5HEPtLhloHmWbeE2Ad0ec++Mcg+0fMVRElMkAjNnxIsdwNwYMFgllMhBjdjzNMeBp4GMlKJMEjJ/AxVyDXur+2JFRJgkYDXAn98BT4GsCyk6QT1PtPzDu4qSIKFYqRkQUKx0jEopFwYiAYtEwSkaxqBglolh0jJJQrBaMElCsNgzPKFYrhkcUqx3DE4oJww+KCcMPignDD4oJww+KCcMPignDD4oJww+KCcMPignDD4oJww+KCWPcthOXGH1IeDa1N/LsYZsmXClt7Q8KS0NphOEHpRGGH5RGGH5QGmGMv/D5fQLIYaELvIvIEr5nDPlGrzJgtELxh9EKxR9GK5T1/3LpRwKKbvQjXhlN99HWwxKjkNl/PLUViiOMPqEcU3aM7zOE4gijTygrNuabvqlu9H4w+oQysHW+A5/qSvGD0SeUJeVcHTLVleIHo08ojjD6qkfxhEHtKB4xqkXxjFEdSgkY1aCUhBEepUSMsCglY4RDiYARBiUSRvEoETGKRdlMXKqzV8Evua7mGvQE8DI4xioon4ENHG5XEQVjFZRHZOhBRRipKFm2q7hdGUYKynMydK7bc6kmjCEov4EtMjXbne37wkC/PGzZsIaudDfw+XP/A9wnc7MNsJ4AB8CznJuZZGiju4EfdP+msl0ZSimllFJKKaWUUkoppXDUX+Hur2UX2ZKIAAAAAElFTkSuQmCC"
+                                    alt="">
+                            </button>
+                        </header>
+                        <div class="slider-container">
+                            <div class="price-inputs">
+                                <div class="input-wrapper">
+                                    <input type="number" id="min-price" value="10" min="0" max="100">
+                                    <span style="display: none;">$<span id="min-label">10</span></span>
+                                </div>
+                                <div class="input-wrapper">
+                                    <input type="number" id="max-price" value="90" min="0" max="100">
+                                    <span style="display: none;">$<span id="max-label">90</span></span>
+                                </div>
+                            </div>
+                            <div class="range-slider">
+                                <input type="range" id="min-range" min="0" max="100" value="20" step="1">
+                                <input type="range" id="max-range" min="0" max="100" value="60" step="1">
+                                <div class="slider-track"></div>
+                                <div class="slider-range"></div>
+                            </div>
+                        </div>
+                        <style>
+                            .price-inputs {
+                                display: flex;
+                                justify-content: space-between;
+                                margin-bottom: 20px;
+                            }
+
+                            .input-wrapper {
+                                position: relative;
+                                display: flex;
+                                align-items: center;
+                            }
+
+                            input[type="number"] {
+                                width: 60px;
+                                padding: 5px;
+                                margin-right: 10px;
+                                border: 1px solid #ccc;
+                                border-radius: 5px;
+                                text-align: center;
+                            }
+
+                            input[type="range"] {
+                                -webkit-appearance: none;
+                                appearance: none;
+                                width: 100%;
+                                height: 8px;
+                                background: transparent;
+                                position: absolute;
+                                pointer-events: none;
+                            }
+
+                            input[type="range"]::-webkit-slider-thumb {
+                                -webkit-appearance: none;
+                                appearance: none;
+                                width: 20px;
+                                height: 20px;
+                                background: #6b46c1;
+                                border-radius: 50%;
+                                cursor: pointer;
+                                pointer-events: auto;
+                                position: relative;
+                                z-index: 2;
+                            }
+
+                            input[type="range"]::-moz-range-thumb {
+                                width: 20px;
+                                height: 20px;
+                                background: #6b46c1;
+                                border-radius: 50%;
+                                cursor: pointer;
+                                pointer-events: auto;
+                                position: relative;
+                                z-index: 2;
+                            }
+
+                            .range-slider {
+                                position: relative;
+                                width: 100%;
+                                height: 8px;
+                            }
+
+                            .slider-track,
+                            .slider-range {
+                                position: absolute;
+                                height: 8px;
+                                border-radius: 5px;
+                            }
+
+                            .slider-track {
+                                width: 100%;
+                                background: #ddd;
+                                z-index: 1;
+                            }
+
+                            .slider-range {
+                                background: #6b46c1;
+                                z-index: 1;
+                            }
+                        </style>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', () => {
+                                const minInput = document.getElementById('min-price');
+                                const maxInput = document.getElementById('max-price');
+                                const minRange = document.getElementById('min-range');
+                                const maxRange = document.getElementById('max-range');
+                                const minLabel = document.getElementById('min-label');
+                                const maxLabel = document.getElementById('max-label');
+
+                                function updateSlider() {
+                                    let minValue = parseInt(minInput.value);
+                                    let maxValue = parseInt(maxInput.value);
+
+                                    if (minValue >= maxValue) {
+                                        if (this === minInput) {
+                                            maxValue = minValue + 1;
+                                            maxInput.value = maxValue;
+                                        } else {
+                                            minValue = maxValue - 1;
+                                            minInput.value = minValue;
+                                        }
+                                    }
+
+                                    minRange.value = minValue;
+                                    maxRange.value = maxValue;
+                                    minLabel.textContent = minValue;
+                                    maxLabel.textContent = maxValue;
+                                    updateTrack();
+                                }
+
+                                function updateInput() {
+                                    let minValue = parseInt(minRange.value);
+                                    let maxValue = parseInt(maxRange.value);
+
+                                    if (minValue >= maxValue) {
+                                        if (this === minRange) {
+                                            maxValue = minValue + 1;
+                                            maxRange.value = maxValue;
+                                        } else {
+                                            minValue = maxValue - 1;
+                                            minRange.value = minValue;
+                                        }
+                                    }
+
+                                    minInput.value = minValue;
+                                    maxInput.value = maxValue;
+                                    minLabel.textContent = minValue;
+                                    maxLabel.textContent = maxValue;
+                                    updateTrack();
+                                }
+
+                                function updateTrack() {
+                                    const minValue = parseInt(minRange.value);
+                                    const maxValue = parseInt(maxRange.value);
+                                    const rangeMin = minRange.min;
+                                    const rangeMax = maxRange.max;
+
+                                    const rangeStyle = document.querySelector('.slider-range');
+                                    const rangeLeft = ((minValue - rangeMin) / (rangeMax - rangeMin)) * 100;
+                                    const rangeRight = ((maxValue - rangeMin) / (rangeMax - rangeMin)) * 100;
+
+                                    rangeStyle.style.left = `${rangeLeft}%`;
+                                    rangeStyle.style.right = `${100 - rangeRight}%`;
+                                }
+
+                                minInput.addEventListener('input', updateSlider);
+                                maxInput.addEventListener('input', updateSlider);
+                                minRange.addEventListener('input', updateInput);
+                                maxRange.addEventListener('input', updateInput);
+
+                                const rangeTrack = document.createElement('div');
+                                rangeTrack.className = 'slider-range';
+                                minRange.parentElement.appendChild(rangeTrack);
+                                updateTrack();
+                            });
+
+                        </script>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="p-3">
+        <div class="relative bg-white border p-[20px] rounded-[20px] w-auto flex-shrink-0">
+            <img class="w-full mb-[20px]"
+                src="https://tiendathoth.com/cdn/shop/products/14009-07-03_512x512.png?v=1619287015" alt="">
+            <h1 class="font-bold text-2xl">Zapato Nike</h1>
+            <h3>$200.000 COP</h3>
+            <div class="flex justify-end mt-4">
+                <a href="">
+                    <button class="bg-sky-300 text-white font-bold p-3 px-6 rounded-full">Ver</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="p-3 py-5 mt-4 border">
+        <div>
+            <div>
+                <img class="w-[80px] mb-2"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/2560px-Amazon_logo.svg.png"
+                    alt="">
+                <p>La mejor tienda de zapatos online. Encuentra tus zapatos ideales para cualquier ocasión.</p>
+            </div>
+            <div class="mt-3">
+                <h1 class="font-bold mb-2">Navegación</h1>
+                <ul>
+                    <li>
+                        Inicio
+                    </li>
+                    <li>
+                        Hombres
+                    </li>
+                    <li>
+                        Mujeres
+                    </li>
+                    <li>
+                        Niños
+                    </li>
+                    <li>
+                        Ofertas
+                    </li>
+                </ul>
+            </div>
+            <div class="mt-3">
+                <h1 class="font-bold mb-2">Navegación</h1>
+                <ul>
+                    <li>
+                        Inicio
+                    </li>
+                    <li>
+                        Hombres
+                    </li>
+                    <li>
+                        Mujeres
+                    </li>
+                    <li>
+                        Niños
+                    </li>
+                    <li>
+                        Ofertas
+                    </li>
+                </ul>
+            </div>
+            <div class="mt-3">
+                <h1 class="font-bold mb-2">Navegación</h1>
+                <ul>
+                    <li>
+                        Inicio
+                    </li>
+                    <li>
+                        Hombres
+                    </li>
+                    <li>
+                        Mujeres
+                    </li>
+                    <li>
+                        Niños
+                    </li>
+                    <li>
+                        Ofertas
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="pt-[20px] font-bold text-center">
+            © 2024 Amazon. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <script>
+        function ocultarDiv(divId) {
+            const div = document.getElementById(divId);
+            gsap.to(div, {
+                opacity: 0,
+                duration: 0.1,
+                onComplete: () => div.classList.add('hidden')
+            });
+        }
+
+        function mostrarDiv(divId) {
+            const div = document.getElementById(divId);
+            div.classList.remove('hidden');
+            gsap.to(div, {
+                opacity: 1,
+                duration: 0.1
+            });
+        }
+    </script>
+
+</body>
+
+</html>
